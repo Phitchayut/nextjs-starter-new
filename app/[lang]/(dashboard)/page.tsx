@@ -1,4 +1,5 @@
 "use client"
+import Counter from "@/components/counter/Counter";
 import { Breadcrumbs, BreadcrumbItem } from "@/components/ui/breadcrumbs";
 const BlankPage = () => {
   return (
@@ -7,7 +8,7 @@ const BlankPage = () => {
         <BreadcrumbItem>Utility</BreadcrumbItem>
         <BreadcrumbItem className="text-primary">Blank Page</BreadcrumbItem>
       </Breadcrumbs>
-      <div className="mt-5 text-2xl font-medium text-default-900">Blank Page</div>
+      <Counter />
     </div>
   );
 };

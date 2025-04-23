@@ -13,7 +13,7 @@ type Props = {
 const Update = ({ params }: Props) => {
   return (
     <>
-      <Card title="Add User">
+      <Card title="Update User">
         <FormUpdate userId={params.id} />
       </Card>
       <Link href={`/user`}>

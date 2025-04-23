@@ -3,7 +3,7 @@ import { match } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
 
 let defaultLocale = "en";
-let locales = ["bn", "en", "ar"];
+let locales = ["en", "th"];
 
 // Get the preferred locale, similar to above or using a library
 function getLocale(request: Request) {
@@ -11,7 +11,7 @@ function getLocale(request: Request) {
   let headers = { "accept-language": acceptedLanguage };
   let languages = new Negotiator({ headers }).languages();
 
-  return match(languages, locales, defaultLocale); // -> 'en-US'
+  return match(languages, locales, defaultLocale);
 }
 
 export function middleware(request: any) {
@@ -27,7 +27,7 @@ export function middleware(request: any) {
     const locale = getLocale(request);
 
     // e.g. incoming request is /products
-    // The new URL is now /en-US/products
+    // The new URL is now /en/products
     return NextResponse.redirect(
       new URL(`/${locale}/${pathname}`, request.url)
     );
@@ -37,7 +37,6 @@ export function middleware(request: any) {
 export const config = {
   matcher: [
     // Skip all internal paths (_next, assets, api)
-    //"/((?!api|assets|.*\\..*|_next).*)",
     "/((?!api|assets|docs|.*\\..*|_next).*)",
     // Optional: only run on root (/) URL
   ],
