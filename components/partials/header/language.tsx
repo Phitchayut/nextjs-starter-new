@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import flag1 from "@/public/images/all-img/flag-1.png";
 import flag2 from "@/public/images/all-img/flag-2.png";
+import flag3 from "@/public/images/all-img/flag-3.png";
 import { useState } from "react";
 import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -21,9 +22,13 @@ const languages = [
     flag: flag1,
   },
   {
-    name: "th",
+    name: "bn",
     flag: flag2,
-  }
+  },
+  {
+    name: "ar",
+    flag: flag3,
+  },
 ];
 const Language = () => {
   type Language = {
@@ -44,7 +49,7 @@ const Language = () => {
     setSelectedLanguage({
       ...selectedLanguage,
       name: lang,
-      language: lang === "en" ? "En" : "th",
+      language: lang === "en" ? "En" : "Bn",
     });
     setRtl(lang === "ar");
     if (pathname) {
@@ -63,7 +68,7 @@ const Language = () => {
             />
           </span>
           <span className="text-sm text-default-600 capitalize">
-            {selectedLanguage ? selectedLanguage.name : "Th"}
+            {selectedLanguage ? selectedLanguage.name : "En"}
           </span>
         </Button>
       </DropdownMenuTrigger>
