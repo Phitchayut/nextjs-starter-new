@@ -2,7 +2,6 @@ import React from "react";
 import { Icon } from "@iconify/react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Settings } from "@/components/svg";
-import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 import avatar5 from "@/public/images/avatar/avatar-5.jpg";
 const FooterMenu = () => {

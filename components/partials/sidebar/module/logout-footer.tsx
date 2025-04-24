@@ -1,5 +1,4 @@
 "use client";
-import { useSession, signIn, signOut } from "next-auth/react";
 import { Icon } from "@iconify/react";
 
 import { useState } from "react";
@@ -21,7 +20,6 @@ const LogoutFooter = () => {
         <div className=" flex-none">
           <button
             type="button"
-            onClick={() => signOut()}
             className="  text-default-500 inline-flex h-9 w-9 rounded items-center  dark:bg-default-300 justify-center dark:text-default-900"
           >
             <Icon

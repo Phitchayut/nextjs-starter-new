@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Loader2 } from "lucide-react";
-import { signIn } from "next-auth/react";
 import toast from "react-hot-toast";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -57,20 +56,7 @@ const LogInForm = () => {
   const toggleVisibility = () => setIsVisible(!isVisible);
 
   const onSubmit = (data: { email: string; password: string; }) => {
-    startTransition(async () => {
-      let response = await signIn("credentials", {
-        email: data.email,
-        password: data.password,
-        redirect: false,
-      });
-      if (response?.ok) {
-        toast.success("Login Successful");
-        window.location.assign("/dashboard");
-        reset();
-      } else if (response?.error) {
-        toast.error(response?.error);
-      }
-    });
+    
   };
   return (
     <div className="w-full py-10">
@@ -179,11 +165,7 @@ const LogInForm = () => {
           variant="outline"
           className="rounded-full  border-default-300 hover:bg-transparent"
           disabled={isPending}
-          onClick={() =>
-            signIn("google", {
-              callbackUrl: "/dashboard",
-            })
-          }
+         
         >
           <Image src={googleIcon} alt="google" className="w-5 h-5" />
         </Button>
@@ -193,12 +175,7 @@ const LogInForm = () => {
           variant="outline"
           className="rounded-full  border-default-300 hover:bg-transparent"
           disabled={isPending}
-          onClick={() =>
-            signIn("github", {
-              callbackUrl: "/dashboard",
-              redirect: false,
-            })
-          }
+          
         >
           <Image src={GithubIcon} alt="google" className="w-5 h-5" />
         </Button>

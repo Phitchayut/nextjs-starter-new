@@ -7,11 +7,18 @@ let locales = ["en", "th"];
 
 // Get the preferred locale, similar to above or using a library
 function getLocale(request: Request) {
-  const acceptedLanguage = request.headers.get("accept-language") ?? undefined;
+  const acceptedLanguage = request.headers.get("accept-language") ?? "";
   let headers = { "accept-language": acceptedLanguage };
   let languages = new Negotiator({ headers }).languages();
 
-  return match(languages, locales, defaultLocale);
+  const matched = match(languages, locales, defaultLocale);
+
+  // เงื่อนไขพิเศษ: บังคับใช้ defaultLocale ถ้าตรวจพบว่า match แล้วเป็น "th"
+  if (matched === "th") {
+    return defaultLocale;
+  }
+
+  return matched;
 }
 
 export function middleware(request: any) {
