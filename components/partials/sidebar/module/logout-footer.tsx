@@ -1,12 +1,15 @@
 "use client";
+import { useSession, signIn, signOut } from "next-auth/react";
 import { Icon } from "@iconify/react";
 
 import { useState } from "react";
+import AddBlock from "../common/add-block";
 const LogoutFooter = () => {
 
 
   return (
     <>
+      {/* <AddBlock /> */}
 
       <div className=" bg-default-50 dark:bg-default-200 items-center flex gap-3  px-4 py-2 mt-5">
         <div className="flex-1">
@@ -20,6 +23,7 @@ const LogoutFooter = () => {
         <div className=" flex-none">
           <button
             type="button"
+            onClick={() => signOut()}
             className="  text-default-500 inline-flex h-9 w-9 rounded items-center  dark:bg-default-300 justify-center dark:text-default-900"
           >
             <Icon
