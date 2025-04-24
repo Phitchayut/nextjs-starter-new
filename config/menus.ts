@@ -1,4 +1,4 @@
-import { DashBoard,UserIcon } from '@/components/svg';
+import { DashBoard, UserIcon, SettingsIcon } from '@/components/svg';
 
 export interface MenuItemProps {
   title: string;
@@ -23,6 +23,11 @@ export const menusConfig = {
       icon: UserIcon,
       href: '/user',
     },
+    {
+      title: 'CRUD',
+      icon: SettingsIcon,
+      href: '/settings',
+    },
   ],
   sidebarNav: {
     modern: [
@@ -32,10 +37,15 @@ export const menusConfig = {
         href: '/blank',
       },
       {
-      title: 'CRUD',
-      icon: UserIcon,
-      href: '/user',
-    },
+        title: 'CRUD',
+        icon: UserIcon,
+        href: '/user',
+      },
+      {
+        title: 'CRUD',
+        icon: SettingsIcon,
+        href: '/settings',
+      },
     ],
     classic: [
       {
@@ -48,10 +58,15 @@ export const menusConfig = {
         href: '/blank',
       },
       {
-      title: 'CRUD',
-      icon: UserIcon,
-      href: '/user',
-    },
+        title: 'CRUD',
+        icon: UserIcon,
+        href: '/user',
+      },
+      {
+        title: 'Settings',
+        icon: SettingsIcon,
+        href: '/settings',
+      },
     ],
   },
 };
