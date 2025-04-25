@@ -36,7 +36,7 @@ const SingleMenuItem = ({ item, collapsed, trans }: {
                       }
                     )}
                   >
-                    <item.icon className="w-6 h-6" />
+                    <Icon icon={item.icon} className='w-6 h-6'/>
                   </span>
                 </Tooltip.Trigger>
                 <Tooltip.Portal>
@@ -65,7 +65,7 @@ const SingleMenuItem = ({ item, collapsed, trans }: {
             )}
           >
             <span className="flex-grow-0">
-              <item.icon className="w-5 h-5" />
+            <Icon icon={item.icon} className='w-6 h-6'/>
             </span>
             <div className="text-box flex-grow ">{translate(title, trans)}</div>
             {badge && <Badge className=" rounded">{item.badge}</Badge>}

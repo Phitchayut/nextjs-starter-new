@@ -17,8 +17,10 @@ import MenuOverlayPortal from "./MenuOverlayPortal";
 import { ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const ModuleSidebar = ({ trans }: { trans: any }) => {
-  const menus = menusConfig?.sidebarNav?.modern || [];
+const ModuleSidebar = ({ trans,menus_list }: { trans: any,menus_list: Menu[] }) => {
+  console.log(menus_list);
+  
+  // const menus = menusConfig?.sidebarNav?.modern || [];
   const { subMenu, setSubmenu, collapsed, setCollapsed, sidebarBg } =
     useSidebar();
   const { isRtl } = useThemeStore();
@@ -38,8 +40,8 @@ const ModuleSidebar = ({ trans }: { trans: any }) => {
 
   const toggleSubMenu = (index: number) => {
     setActiveIndex(index);
-    if (menus[index].child) {
-      setCurrentSubMenu(menus[index].child);
+    if (menus_list[index].child) {
+      setCurrentSubMenu(menus_list[index].child);
       setSubmenu(false);
       setCollapsed(false);
       if (!isDesktop) {
@@ -51,7 +53,7 @@ const ModuleSidebar = ({ trans }: { trans: any }) => {
 
       if (!isDesktop) {
         // when location match need to close the sub menu
-        if (isLocationMatch(menus[index].title, locationName)) {
+        if (isLocationMatch(menus_list[index].title, locationName)) {
           setSubmenu(false);
         }
       }
@@ -91,14 +93,14 @@ const ModuleSidebar = ({ trans }: { trans: any }) => {
   //
   const getMenuTitle = () => {
     if (activeIndex !== null) {
-      return menus[activeIndex].title;
+      return menus_list[activeIndex].title;
     }
     return "";
   };
 
   useEffect(() => {
     let isMenuMatched = false;
-    menus.forEach((item: any, i: number) => {
+    menus_list.forEach((item: any, i: number) => {
       if (item?.href) {
         if (isLocationMatch(item.href, locationName)) {
           isMenuMatched = true;
@@ -164,7 +166,7 @@ const ModuleSidebar = ({ trans }: { trans: any }) => {
           </div>
           {/* end logo */}
           <ScrollArea className=" pt-6 grow ">
-            {menus.map((item, i) => (
+            {menus_list.map((item, i) => (
               <div
                 key={i}
                 onClick={() => toggleSubMenu(i)}

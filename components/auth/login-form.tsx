@@ -20,17 +20,21 @@ import googleIcon from "@/public/images/auth/google.png";
 import facebook from "@/public/images/auth/facebook.png";
 import twitter from "@/public/images/auth/twitter.png";
 import GithubIcon from "@/public/images/auth/github.png";
+import Cookies from 'js-cookie';
 
 const schema = z.object({
   email: z.string().email({ message: "Your email is invalid." }),
   password: z.string().min(4),
 });
 import { useMediaQuery } from "@/hooks/use-media-query";
+import { cookies } from "next/headers";
+import { useRouter } from "next/navigation";
 
 const LogInForm = () => {
   const [isPending, startTransition] = React.useTransition();
   const [passwordType, setPasswordType] = React.useState("password");
   const isDesktop2xl = useMediaQuery("(max-width: 1530px)");
+  const router = useRouter();
 
   const togglePasswordType = () => {
     if (passwordType === "text") {
@@ -57,20 +61,8 @@ const LogInForm = () => {
   const toggleVisibility = () => setIsVisible(!isVisible);
 
   const onSubmit = (data: { email: string; password: string; }) => {
-    startTransition(async () => {
-      let response = await signIn("credentials", {
-        email: data.email,
-        password: data.password,
-        redirect: false,
-      });
-      if (response?.ok) {
-        toast.success("Login Successful");
-        window.location.assign("/dashboard");
-        reset();
-      } else if (response?.error) {
-        toast.error(response?.error);
-      }
-    });
+    Cookies.set('Authentication', 'my-authentication-token');
+    router.push('/dashboard');
   };
   return (
     <div className="w-full py-10">
@@ -144,7 +136,6 @@ const LogInForm = () => {
             {errors.password.message}
           </div>
         )}
-
         <div className="mt-5  mb-8 flex flex-wrap gap-2">
           <div className="flex-1 flex  items-center gap-1.5 ">
             <Checkbox
@@ -172,60 +163,6 @@ const LogInForm = () => {
           {isPending ? "Loading..." : "Sign In"}
         </Button>
       </form>
-      <div className="mt-6 xl:mt-8 flex flex-wrap justify-center gap-4">
-        <Button
-          type="button"
-          size="icon"
-          variant="outline"
-          className="rounded-full  border-default-300 hover:bg-transparent"
-          disabled={isPending}
-          onClick={() =>
-            signIn("google", {
-              callbackUrl: "/dashboard",
-            })
-          }
-        >
-          <Image src={googleIcon} alt="google" className="w-5 h-5" />
-        </Button>
-        <Button
-          type="button"
-          size="icon"
-          variant="outline"
-          className="rounded-full  border-default-300 hover:bg-transparent"
-          disabled={isPending}
-          onClick={() =>
-            signIn("github", {
-              callbackUrl: "/dashboard",
-              redirect: false,
-            })
-          }
-        >
-          <Image src={GithubIcon} alt="google" className="w-5 h-5" />
-        </Button>
-        <Button
-          type="button"
-          size="icon"
-          variant="outline"
-          className="rounded-full border-default-300 hover:bg-transparent"
-        >
-          <Image src={facebook} alt="google" className="w-5 h-5" />
-        </Button>
-        <Button
-          type="button"
-          size="icon"
-          variant="outline"
-          className="rounded-full  border-default-300 hover:bg-transparent"
-        >
-          <Image src={twitter} alt="google" className="w-5 h-5" />
-        </Button>
-      </div>
-      <div className="mt-5 2xl:mt-8 text-center text-base text-default-600">
-        Don't have an account?{" "}
-        <Link href="/auth/register" className="text-primary">
-          {" "}
-          Sign Up{" "}
-        </Link>
-      </div>
     </div>
   );
 };

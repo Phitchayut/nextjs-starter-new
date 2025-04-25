@@ -20,7 +20,7 @@ const MultiNestedMenu = ({ subItem, subIndex, activeMultiMenu, trans }: {
     <Collapsible open={activeMultiMenu === subIndex}>
       <CollapsibleContent className="CollapsibleContent">
         <ul className="space-y-3 pl-1">
-          {subItem?.multi_menu?.map((item: any, i: number) => (
+          {subItem?.multi_menu?.filter((child) => child.canRead !== false).map((item: any, i: number) => (
             <li className=" first:pt-3" key={i}>
               <Link href={item.href}>
                 <span

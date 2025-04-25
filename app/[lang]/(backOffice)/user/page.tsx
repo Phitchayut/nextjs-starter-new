@@ -1,5 +1,5 @@
 'use client';
-import UserList from '@/app/[lang]/(dashboard)/user/_components/UserList';
+import UserList from '@/app/[lang]/(backOffice)/user/_components/UserList';
 const UserPage = () => {
   return (
     <div>

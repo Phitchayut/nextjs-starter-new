@@ -184,7 +184,7 @@ importers:
         version: 1.5.1
       '@vercel/analytics':
         specifier: ^1.2.2
-        version: 1.5.0(next@14.1.3(@babel/core@7.26.10)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(react@18.2.0)
+        version: 1.5.0(next@14.1.3(@babel/core@7.24.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(react@18.2.0)
       apexcharts:
         specifier: ^3.42.0
         version: 3.54.1
@@ -254,6 +254,9 @@ importers:
       html-to-image:
         specifier: ^1.11.11
         version: 1.11.13
+      js-cookie:
+        specifier: ^3.0.5
+        version: 3.0.5
       leaflet:
         specifier: ^1.9.4
         version: 1.9.4
@@ -271,19 +274,19 @@ importers:
         version: 0.6.4
       next:
         specifier: 14.1.3
-        version: 14.1.3(@babel/core@7.26.10)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0)
+        version: 14.1.3(@babel/core@7.24.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0)
       next-auth:
         specifier: ^4.24.11
-        version: 4.24.11(next@14.1.3(@babel/core@7.26.10)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 4.24.11(next@14.1.3(@babel/core@7.24.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       next-themes:
         specifier: ^0.2.1
-        version: 0.2.1(next@14.1.3(@babel/core@7.26.10)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 0.2.1(next@14.1.3(@babel/core@7.24.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       nextra:
         specifier: ^2.13.4
-        version: 2.13.4(next@14.1.3(@babel/core@7.26.10)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 2.13.4(next@14.1.3(@babel/core@7.24.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       nextra-theme-docs:
         specifier: ^2.13.4
-        version: 2.13.4(next@14.1.3(@babel/core@7.26.10)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(nextra@2.13.4(next@14.1.3(@babel/core@7.26.10)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 2.13.4(next@14.1.3(@babel/core@7.24.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(nextra@2.13.4(next@14.1.3(@babel/core@7.24.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       postcss:
         specifier: 8.4.28
         version: 8.4.28
@@ -401,7 +404,7 @@ importers:
         version: 8.1.0(typescript@5.8.3)
       '@types/next':
         specifier: ^9.0.0
-        version: 9.0.0(@babel/core@7.26.10)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0)
+        version: 9.0.0(@babel/core@7.24.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0)
       '@types/node':
         specifier: ^20.10.0
         version: 20.17.30
@@ -9267,10 +9270,6 @@ snapshots:
       '@ckeditor/ckeditor5-core': 45.0.0
       '@ckeditor/ckeditor5-upload': 45.0.0
       ckeditor5: 45.0.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   '@ckeditor/ckeditor5-alignment@45.0.0':
     dependencies:
@@ -9296,10 +9295,6 @@ snapshots:
       '@ckeditor/ckeditor5-typing': 45.0.0
       '@ckeditor/ckeditor5-utils': 45.0.0
       ckeditor5: 45.0.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   '@ckeditor/ckeditor5-autosave@45.0.0':
     dependencies:
@@ -9324,10 +9319,6 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 45.0.0
       '@ckeditor/ckeditor5-utils': 45.0.0
       ckeditor5: 45.0.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   '@ckeditor/ckeditor5-block-quote@40.2.0':
     dependencies:
@@ -9342,10 +9333,6 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 45.0.0
       '@ckeditor/ckeditor5-utils': 45.0.0
       ckeditor5: 45.0.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   '@ckeditor/ckeditor5-bookmark@45.0.0':
     dependencies:
@@ -9356,6 +9343,10 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 45.0.0
       '@ckeditor/ckeditor5-widget': 45.0.0
       ckeditor5: 45.0.0
+    transitivePeerDependencies:
+      - bufferutil
+      - supports-color
+      - utf-8-validate
 
   '@ckeditor/ckeditor5-build-classic@40.2.0':
     dependencies:
@@ -9448,10 +9439,6 @@ snapshots:
       '@ckeditor/ckeditor5-core': 45.0.0
       '@ckeditor/ckeditor5-utils': 45.0.0
       ckeditor5: 45.0.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   '@ckeditor/ckeditor5-code-block@45.0.0':
     dependencies:
@@ -9463,10 +9450,6 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 45.0.0
       '@ckeditor/ckeditor5-utils': 45.0.0
       ckeditor5: 45.0.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   '@ckeditor/ckeditor5-collaboration-core@45.0.0':
     dependencies:
@@ -9543,10 +9526,6 @@ snapshots:
       '@ckeditor/ckeditor5-upload': 45.0.0
       '@ckeditor/ckeditor5-utils': 45.0.0
       ckeditor5: 45.0.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   '@ckeditor/ckeditor5-editor-balloon@45.0.0':
     dependencies:
@@ -9556,10 +9535,6 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 45.0.0
       ckeditor5: 45.0.0
       es-toolkit: 1.32.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   '@ckeditor/ckeditor5-editor-classic@40.2.0':
     dependencies:
@@ -9574,10 +9549,6 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 45.0.0
       ckeditor5: 45.0.0
       es-toolkit: 1.32.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   '@ckeditor/ckeditor5-editor-decoupled@45.0.0':
     dependencies:
@@ -9587,10 +9558,6 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 45.0.0
       ckeditor5: 45.0.0
       es-toolkit: 1.32.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   '@ckeditor/ckeditor5-editor-inline@45.0.0':
     dependencies:
@@ -9600,10 +9567,6 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 45.0.0
       ckeditor5: 45.0.0
       es-toolkit: 1.32.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   '@ckeditor/ckeditor5-editor-multi-root@45.0.0':
     dependencies:
@@ -9643,6 +9606,10 @@ snapshots:
     dependencies:
       '@ckeditor/ckeditor5-utils': 45.0.0
       es-toolkit: 1.32.0
+    transitivePeerDependencies:
+      - bufferutil
+      - supports-color
+      - utf-8-validate
 
   '@ckeditor/ckeditor5-enter@40.2.0':
     dependencies:
@@ -9670,10 +9637,6 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 45.0.0
       '@ckeditor/ckeditor5-undo': 45.0.0
       ckeditor5: 45.0.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   '@ckeditor/ckeditor5-find-and-replace@45.0.0':
     dependencies:
@@ -9683,10 +9646,6 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 45.0.0
       ckeditor5: 45.0.0
       es-toolkit: 1.32.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   '@ckeditor/ckeditor5-font@45.0.0':
     dependencies:
@@ -9758,10 +9717,6 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 45.0.0
       '@ckeditor/ckeditor5-widget': 45.0.0
       ckeditor5: 45.0.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   '@ckeditor/ckeditor5-html-embed@45.0.0':
     dependencies:
@@ -9771,10 +9726,6 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 45.0.0
       '@ckeditor/ckeditor5-widget': 45.0.0
       ckeditor5: 45.0.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   '@ckeditor/ckeditor5-html-support@45.0.0':
     dependencies:
@@ -9789,10 +9740,6 @@ snapshots:
       '@ckeditor/ckeditor5-widget': 45.0.0
       ckeditor5: 45.0.0
       es-toolkit: 1.32.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   '@ckeditor/ckeditor5-icons@45.0.0': {}
 
@@ -9906,10 +9853,6 @@ snapshots:
       marked: 4.0.12
       turndown: 7.2.0
       turndown-plugin-gfm: 1.0.2
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   '@ckeditor/ckeditor5-media-embed@40.2.0':
     dependencies:
@@ -9928,10 +9871,6 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 45.0.0
       '@ckeditor/ckeditor5-widget': 45.0.0
       ckeditor5: 45.0.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   '@ckeditor/ckeditor5-mention@45.0.0':
     dependencies:
@@ -9985,10 +9924,6 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 45.0.0
       '@ckeditor/ckeditor5-widget': 45.0.0
       ckeditor5: 45.0.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   '@ckeditor/ckeditor5-pagination@45.0.0':
     dependencies:
@@ -10024,10 +9959,6 @@ snapshots:
       '@ckeditor/ckeditor5-core': 45.0.0
       '@ckeditor/ckeditor5-engine': 45.0.0
       ckeditor5: 45.0.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   '@ckeditor/ckeditor5-react@6.3.0(@ckeditor/ckeditor5-core@45.0.0)(@ckeditor/ckeditor5-editor-multi-root@45.0.0)(@ckeditor/ckeditor5-engine@45.0.0)(@ckeditor/ckeditor5-utils@45.0.0)(@ckeditor/ckeditor5-watchdog@45.0.0)(react@18.2.0)':
     dependencies:
@@ -10068,10 +9999,6 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 45.0.0
       '@ckeditor/ckeditor5-utils': 45.0.0
       ckeditor5: 45.0.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   '@ckeditor/ckeditor5-restricted-editing@45.0.0':
     dependencies:
@@ -10081,10 +10008,6 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 45.0.0
       '@ckeditor/ckeditor5-utils': 45.0.0
       ckeditor5: 45.0.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   '@ckeditor/ckeditor5-revision-history@45.0.0':
     dependencies:
@@ -10123,10 +10046,6 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 45.0.0
       '@ckeditor/ckeditor5-utils': 45.0.0
       ckeditor5: 45.0.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   '@ckeditor/ckeditor5-source-editing@45.0.0':
     dependencies:
@@ -10138,10 +10057,6 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 45.0.0
       '@ckeditor/ckeditor5-utils': 45.0.0
       ckeditor5: 45.0.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   '@ckeditor/ckeditor5-special-characters@45.0.0':
     dependencies:
@@ -10151,10 +10066,6 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 45.0.0
       '@ckeditor/ckeditor5-utils': 45.0.0
       ckeditor5: 45.0.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   '@ckeditor/ckeditor5-style@45.0.0':
     dependencies:
@@ -10349,10 +10260,6 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 45.0.0
       ckeditor5: 45.0.0
       es-toolkit: 1.32.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   '@dnd-kit/accessibility@3.1.1(react@18.2.0)':
     dependencies:
@@ -12955,9 +12862,9 @@ snapshots:
 
   '@types/negotiator@0.6.3': {}
 
-  '@types/next@9.0.0(@babel/core@7.26.10)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0)':
+  '@types/next@9.0.0(@babel/core@7.24.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0)':
     dependencies:
-      next: 14.1.3(@babel/core@7.26.10)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0)
+      next: 14.1.3(@babel/core@7.24.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0)
     transitivePeerDependencies:
       - '@babel/core'
       - '@opentelemetry/api'
@@ -13210,9 +13117,9 @@ snapshots:
   '@unrs/resolver-binding-win32-x64-msvc@1.6.4':
     optional: true
 
-  '@vercel/analytics@1.5.0(next@14.1.3(@babel/core@7.26.10)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(react@18.2.0)':
+  '@vercel/analytics@1.5.0(next@14.1.3(@babel/core@7.24.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(react@18.2.0)':
     optionalDependencies:
-      next: 14.1.3(@babel/core@7.26.10)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0)
+      next: 14.1.3(@babel/core@7.24.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0)
       react: 18.2.0
 
   '@webassemblyjs/ast@1.14.1':
@@ -16664,13 +16571,13 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  next-auth@4.24.11(next@14.1.3(@babel/core@7.26.10)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  next-auth@4.24.11(next@14.1.3(@babel/core@7.24.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       '@babel/runtime': 7.27.0
       '@panva/hkdf': 1.2.1
       cookie: 0.7.2
       jose: 4.15.9
-      next: 14.1.3(@babel/core@7.26.10)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0)
+      next: 14.1.3(@babel/core@7.24.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0)
       oauth: 0.9.15
       openid-client: 5.7.1
       preact: 10.26.5
@@ -16690,19 +16597,19 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  next-seo@6.6.0(next@14.1.3(@babel/core@7.26.10)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  next-seo@6.6.0(next@14.1.3(@babel/core@7.24.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
-      next: 14.1.3(@babel/core@7.26.10)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0)
+      next: 14.1.3(@babel/core@7.24.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  next-themes@0.2.1(next@14.1.3(@babel/core@7.26.10)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  next-themes@0.2.1(next@14.1.3(@babel/core@7.24.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
-      next: 14.1.3(@babel/core@7.26.10)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0)
+      next: 14.1.3(@babel/core@7.24.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  next@14.1.3(@babel/core@7.26.10)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0):
+  next@14.1.3(@babel/core@7.24.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0):
     dependencies:
       '@next/env': 14.1.3
       '@swc/helpers': 0.5.2
@@ -16712,7 +16619,7 @@ snapshots:
       postcss: 8.4.31
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      styled-jsx: 5.1.1(@babel/core@7.26.10)(react@18.2.0)
+      styled-jsx: 5.1.1(@babel/core@7.24.5)(react@18.2.0)
     optionalDependencies:
       '@next/swc-darwin-arm64': 14.1.3
       '@next/swc-darwin-x64': 14.1.3
@@ -16754,7 +16661,7 @@ snapshots:
       - '@babel/core'
       - babel-plugin-macros
 
-  nextra-theme-docs@2.13.4(next@14.1.3(@babel/core@7.26.10)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(nextra@2.13.4(next@14.1.3(@babel/core@7.26.10)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  nextra-theme-docs@2.13.4(next@14.1.3(@babel/core@7.24.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(nextra@2.13.4(next@14.1.3(@babel/core@7.24.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       '@headlessui/react': 1.7.19(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@popperjs/core': 2.11.8
@@ -16765,16 +16672,16 @@ snapshots:
       git-url-parse: 13.1.1
       intersection-observer: 0.12.2
       match-sorter: 6.3.4
-      next: 14.1.3(@babel/core@7.26.10)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0)
-      next-seo: 6.6.0(next@14.1.3(@babel/core@7.26.10)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      next-themes: 0.2.1(next@14.1.3(@babel/core@7.26.10)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      nextra: 2.13.4(next@14.1.3(@babel/core@7.26.10)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      next: 14.1.3(@babel/core@7.24.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0)
+      next-seo: 6.6.0(next@14.1.3(@babel/core@7.24.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      next-themes: 0.2.1(next@14.1.3(@babel/core@7.24.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      nextra: 2.13.4(next@14.1.3(@babel/core@7.24.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       scroll-into-view-if-needed: 3.1.0
       zod: 3.24.3
 
-  nextra@2.13.4(next@14.1.3(@babel/core@7.26.10)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  nextra@2.13.4(next@14.1.3(@babel/core@7.24.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       '@headlessui/react': 1.7.19(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@mdx-js/mdx': 2.3.0
@@ -16788,7 +16695,7 @@ snapshots:
       gray-matter: 4.0.3
       katex: 0.16.22
       lodash.get: 4.4.2
-      next: 14.1.3(@babel/core@7.26.10)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0)
+      next: 14.1.3(@babel/core@7.24.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.87.0)
       next-mdx-remote: 4.4.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       p-limit: 3.1.0
       react: 18.2.0
@@ -18188,13 +18095,6 @@ snapshots:
       react: 18.2.0
     optionalDependencies:
       '@babel/core': 7.24.5
-
-  styled-jsx@5.1.1(@babel/core@7.26.10)(react@18.2.0):
-    dependencies:
-      client-only: 0.0.1
-      react: 18.2.0
-    optionalDependencies:
-      '@babel/core': 7.26.10
 
   stylis@4.2.0: {}
 
