@@ -24,10 +24,32 @@ export const menusConfig = {
       href: '/user',
     },
     {
-      title: 'CRUD',
+      title: 'Settings',
       icon: SettingsIcon,
-      href: '/settings',
-    },
+      nested: [
+        {
+          title: "Role Settings",
+          child: [
+            {
+              title: "Users",
+              icon: SettingsIcon,
+              href: "/settings/users"
+            },
+            {
+              title: "Members",
+              icon: SettingsIcon,
+              href: "/settings/members"
+            },
+            {
+              title: "Partners",
+              icon: SettingsIcon,
+              href: "/settings/partners"
+            }
+          ]
+        }
+      ]
+    }
+    ,
   ],
   sidebarNav: {
     modern: [
@@ -42,9 +64,15 @@ export const menusConfig = {
         href: '/user',
       },
       {
-        title: 'CRUD',
+        title: 'Settings',
         icon: SettingsIcon,
-        href: '/settings',
+        child: [
+          {
+            title: "Role Settings",
+            icon: SettingsIcon,
+            href: "/settings"
+          }
+        ]
       },
     ],
     classic: [
@@ -65,7 +93,13 @@ export const menusConfig = {
       {
         title: 'Settings',
         icon: SettingsIcon,
-        href: '/settings',
+        child: [
+          {
+            title: "Role Settings",
+            icon: SettingsIcon,
+            href: "/settings"
+          }
+        ]
       },
     ],
   },

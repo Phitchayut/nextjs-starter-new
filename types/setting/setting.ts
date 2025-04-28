@@ -1,0 +1,25 @@
+interface Settings {
+  id: number;
+  user?: {
+     name: string;
+     avatar: string;
+     title?: string;
+     email: string;
+  };
+  amount?: number;
+  status?: string;
+  email?: string;
+}
+
+type SettingStore = {
+  settings: Settings[];
+  setting: Settings | null;
+  loading: boolean;
+  error: string | null;
+  getUsersSetting: () => Promise<void>;
+  createUsersSetting: (data: Settings) => Promise<void>;
+  // fetchUser: (id: number) => Promise<void>;
+  // createUser: (data: User) => Promise<void>;
+  // updateUser: ({ data, id }: { data: User; id: number }) => Promise<void>;
+  // deleteUser: (id: number) => Promise<void>;
+};
