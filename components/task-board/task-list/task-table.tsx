@@ -120,7 +120,7 @@ const tabs = [
 const priorityColors: { [key: string]: any } = {
   high: "success",
   medium: "warning",
-  low: "destructive",
+  low: "error",
 };
 
 const schema = z.object({
@@ -667,7 +667,7 @@ const TaskTable = ({ data, boards, onUpdateTask, boardID2 }: TaskTableProps) => 
                       className={cn(
                         "text-sm font-medium text-default-900 focus:outline-none pl-2 placeholder:text-primary",
                         {
-                          " placeholder:text-destructive  text-destructive ":
+                          " placeholder:text-error  text-error ":
                             errors.title,
                         }
                       )}

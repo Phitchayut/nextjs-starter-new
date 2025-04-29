@@ -29,7 +29,7 @@ const timelineVariants = cva(" flex grow  flex-col", {
 
 interface CompoundVariant {
   variant: "ghost" | "outline" | "ping";
-  color: "default" | "primary" | "secondary" | "warning" | "destructive" | "success" | "info";
+  color: "default" | "primary" | "secondary" | "warning" | "error" | "success" | "info";
   className: string;
 }
 
@@ -42,7 +42,7 @@ const dotVariants = cva(
         primary: "bg-primary",
         secondary: "bg-secondary",
         warning: "bg-warning",
-        destructive: "bg-destructive",
+        error: "bg-error",
         success: "bg-success",
         info: "bg-info",
       },
@@ -54,7 +54,7 @@ const dotVariants = cva(
     },
     compoundVariants: [
       ...[
-        "destructive",
+        "error",
         "success",
         "info",
         "warning",
@@ -67,7 +67,7 @@ const dotVariants = cva(
         className: `border-${color}`,
       })),
       ...[
-        "destructive",
+        "error",
         "success",
         "info",
         "warning",
@@ -249,7 +249,7 @@ interface TimelineDotProps extends React.HTMLAttributes<HTMLDivElement>,
   VariantProps<typeof dotVariants> {
   children?: React.ReactNode;
 
-  color?: "default" | "primary" | "secondary" | "warning" | "destructive" | "success" | "info";
+  color?: "default" | "primary" | "secondary" | "warning" | "error" | "success" | "info";
   variant?: "ghost" | "outline" | "ping"
 
 }

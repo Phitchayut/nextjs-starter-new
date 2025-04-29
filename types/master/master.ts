@@ -27,6 +27,7 @@ type Menu = {
   title: string;
   icon?: string;
   href?: string;
+  isHeader?: boolean;
   group?: MenuGroup;
   child?: ChildMenuItem[];
 } & MenuPermission;

@@ -54,7 +54,7 @@ const Attachments = () => {
       </div>
       <Button
         size="icon"
-        color="destructive"
+        color="error"
         variant="outline"
         className=" border-none rounded-full"
         onClick={() => handleRemoveFile(file)}
@@ -86,7 +86,7 @@ const Attachments = () => {
         <Fragment>
           <div>{fileList}</div>
           <div className=" flex justify-end space-x-2">
-            <Button color="destructive" onClick={handleRemoveAllFiles}>
+            <Button color="error" onClick={handleRemoveAllFiles}>
               Remove All
             </Button>
           </div>

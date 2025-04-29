@@ -133,7 +133,7 @@ const ListFileCard = ({ files }: { files: File[] }) => {
                     size="icon"
                     variant="outline"
                     className=" h-7 w-7"
-                    color="destructive"
+                    color="error"
                   >
                     <Icon icon="heroicons:trash" className=" h-4 w-4  " />
                   </Button>

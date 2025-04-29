@@ -80,14 +80,14 @@ const AddTask = ({ onClose, boardId }: {
             type="text"
             {...register("title")}
             className={cn("", {
-              "border-destructive focus:border-destructive": errors.title,
+              "border-error focus:border-error": errors.title,
             })}
           />
         </CardContent>
         <CardFooter className="mt-1 justify-end gap-3 pt-0 p-3">
           <Button
             type="button"
-            color="destructive"
+            color="error"
             variant="soft"
             onClick={onClose}
           >

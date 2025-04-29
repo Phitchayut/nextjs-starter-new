@@ -17,8 +17,8 @@ const radioVariants = cva(
           "data-[state=checked]:border-warning data-[state=checked]:text-warning",
         success:
           "data-[state=checked]:border-success data-[state=checked]:text-success",
-        destructive:
-          "data-[state=checked]:border-destructive data-[state=checked]:text-destructive",
+        error:
+          "data-[state=checked]:border-error data-[state=checked]:text-error",
         secondary:
           "data-[state=checked]:border-default-300 data-[state=checked]:text-default-300",
       },

@@ -79,7 +79,7 @@ const SheetTitleDesc = ({ task, taskId }: {
         />
       </div>
       {errors.title && (
-        <div className=" text-destructive">{errors.title.message as string}</div>
+        <div className=" text-error">{errors.title.message as string}</div>
       )}
 
       <div className="flex gap-1 relative">

@@ -16,8 +16,8 @@ const checkboxVariants = cva(
         secondary:
           "border border-default-300 data-[state=checked]:bg-default-300/90 ",
 
-        destructive:
-          "border  border-default-400 data-[state=checked]:border-destructive data-[state=checked]:bg-destructive ",
+        error:
+          "border  border-default-400 data-[state=checked]:border-error data-[state=checked]:bg-error ",
         warning:
           "border  border-default-400 data-[state=checked]:border-warning data-[state=checked]:bg-warning ",
         info: "border  border-default-400 data-[state=checked]:border-info data-[state=checked]:bg-info ",
@@ -53,9 +53,9 @@ const checkboxVariants = cva(
     compoundVariants: [
       {
         variant: "outline",
-        color: "destructive",
+        color: "error",
         className:
-          " [&_svg]:stroke-destructive border-destructive border-destructive",
+          " [&_svg]:stroke-error border-error border-error",
       },
       {
         variant: "outline",

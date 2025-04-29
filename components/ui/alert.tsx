@@ -14,7 +14,7 @@ const alertVariants = cva(
         success: "bg-success text-success-foreground",
         info: "bg-info text-info-foreground",
         warning: "bg-warning text-warning-foreground",
-        destructive: "bg-destructive text-destructive-foreground ",
+        error: "bg-error text-error-foreground ",
         dark: "bg-gray-950 text-slate-50 ",
       },
       variant: {
@@ -25,8 +25,8 @@ const alertVariants = cva(
     compoundVariants: [
       {
         variant: "outline",
-        color: "destructive",
-        className: " text-destructive  bg-transparent ",
+        color: "error",
+        className: " text-error  bg-transparent ",
       },
       {
         variant: "outline",
@@ -68,8 +68,8 @@ const alertVariants = cva(
       },
       {
         variant: "soft",
-        color: "destructive",
-        className: "text-destructive",
+        color: "error",
+        className: "text-error",
       },
       {
         variant: "soft",

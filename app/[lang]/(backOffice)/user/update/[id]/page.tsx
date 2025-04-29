@@ -17,7 +17,7 @@ const Update = ({ params }: Props) => {
         <FormUpdate userId={params.id} />
       </Card>
       <Link href={`/user`}>
-        <Button className="mt-3" color="destructive">
+        <Button className="mt-3" color="error">
           Back
         </Button>
       </Link>

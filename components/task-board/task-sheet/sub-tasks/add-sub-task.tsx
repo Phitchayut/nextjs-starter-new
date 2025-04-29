@@ -52,7 +52,7 @@ const AddSubTask = ({ taskId }: { taskId: TaskType["id"] }) => {
         className={cn(
           "h-[52px] rounded-none border-b border-default-200 pl-12 text-sm font-medium text-default-600 focus:shadow-sm focus:drop-shadow-sm focus:inset-4 focus:border-default-300",
           {
-            "border-destructive focus:border-destructive": errors.title,
+            "border-error focus:border-error": errors.title,
           }
         )}
         placeholder="Add a new subtask..."

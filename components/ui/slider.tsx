@@ -20,8 +20,8 @@ const sliderVariants = cva(
           "[&_.range]:bg-warning [&_.range-thumb]:border-secondary [&_.range-thumb]:drop-shadow-sm [&_.range-thumb]:bg-warning  focus-visible:[&_.range-thumb]:bg-warning",
         success:
           "[&_.range]:bg-success [&_.range-thumb]:border-secondary [&_.range-thumb]:drop-shadow-sm [&_.range-thumb]:bg-success  focus-visible:[&_.range-thumb]:bg-success",
-        destructive:
-          "[&_.range]:bg-destructive [&_.range-thumb]:border-secondary [&_.range-thumb]:drop-shadow-sm [&_.range-thumb]:bg-destructive  focus-visible:[&_.range-thumb]:bg-destructive",
+        error:
+          "[&_.range]:bg-error [&_.range-thumb]:border-secondary [&_.range-thumb]:drop-shadow-sm [&_.range-thumb]:bg-error  focus-visible:[&_.range-thumb]:bg-error",
         dark: "[&_.range]:bg-default-950 [&_.range-thumb]:border-secondary [&_.range-thumb]:drop-shadow-sm [&_.range-thumb]:bg-default-950  focus-visible:[&_.range-thumb]:bg-default-950",
       },
 
@@ -50,7 +50,7 @@ const sliderVariants = cva(
 
 interface SliderProps extends React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>,
   VariantProps<typeof sliderVariants> {
-  color?: "primary" | "info" | "warning" | "success" | "destructive" | 'dark'
+  color?: "primary" | "info" | "warning" | "success" | "error" | 'dark'
   showTooltip?: boolean
   showSteps?: boolean
   marks?: Array<{ value: number; label: string }>

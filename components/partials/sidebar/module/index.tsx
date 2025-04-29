@@ -18,8 +18,6 @@ import { ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const ModuleSidebar = ({ trans,menus_list }: { trans: any,menus_list: Menu[] }) => {
-  console.log(menus_list);
-  
   // const menus = menusConfig?.sidebarNav?.modern || [];
   const { subMenu, setSubmenu, collapsed, setCollapsed, sidebarBg } =
     useSidebar();

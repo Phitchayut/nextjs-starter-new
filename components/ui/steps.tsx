@@ -9,7 +9,7 @@ const stepVariants = cva(
     variants: {
       variant: {
         default:
-          "[&_[step-bar-bg=disable]]:before:bg-default-200 [&_[step-bar-bg=current]]:before:bg-default-200 [&_[step-bar-bg=completed]]:before:bg-primary [&_[step-box=current]]:border-2 [&_[step-box=current]]:border-primary [&_[step-box=completed]]:bg-primary   [&_[step-box=disable]]:bg-default-200 [&_[step-box=error]]:bg-destructive [&_[step-box=error]]:text-destructive-foreground  ",
+          "[&_[step-bar-bg=disable]]:before:bg-default-200 [&_[step-bar-bg=current]]:before:bg-default-200 [&_[step-bar-bg=completed]]:before:bg-primary [&_[step-box=current]]:border-2 [&_[step-box=current]]:border-primary [&_[step-box=completed]]:bg-primary   [&_[step-box=disable]]:bg-default-200 [&_[step-box=error]]:bg-error [&_[step-box=error]]:text-error-foreground  ",
       },
       size: {
         sm: "[&_[step-box]]:h-5 [&_[step-box]]:w-5 [&_[step-box]]:text-[10px]",
@@ -270,7 +270,7 @@ const StepLabel = React.forwardRef<HTMLDivElement, CommonProps>(
         className={cn(
           "text-sm text-default-600  font-medium mt-2",
           {
-            "text-destructive": error,
+            "text-error": error,
           },
           className
         )}
@@ -291,7 +291,7 @@ const StepDescription = React.forwardRef<HTMLDivElement, CommonProps>(
         className={cn(
           "text-sm  text-muted-foreground",
           {
-            "text-destructive": error,
+            "text-error": error,
           },
           className
         )}

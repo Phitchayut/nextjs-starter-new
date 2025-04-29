@@ -47,8 +47,8 @@ const InputGroupText = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTM
             color === "primary",
           "border-success/50 group-focus-within:border-success-700 ring-success-700":
             color === "success",
-          "border-destructive/50 group-focus-within:border-destructive-700 ring-destructive-700":
-            color === "destructive",
+          "border-error/50 group-focus-within:border-error-700 ring-error-700":
+            color === "error",
           "border-warning/50 group-focus-within:border-warning-700 ring-warning-700":
             color === "warning",
         }

@@ -158,11 +158,11 @@
   }
 
   .danger {
-    @apply bg-destructive border-none text-primary-foreground text-center px-2 font-medium text-sm;
+    @apply bg-error border-none text-primary-foreground text-center px-2 font-medium text-sm;
   }
 
-  .destructive {
-    @apply bg-destructive border-none text-primary-foreground text-center px-2 font-medium text-sm;
+  .error {
+    @apply bg-error border-none text-primary-foreground text-center px-2 font-medium text-sm;
   }
 
   .info {

@@ -1,9 +1,12 @@
-'use client';
+// app/[lang]/(backOffice)/user/page.tsx
 import UserList from '@/app/[lang]/(backOffice)/user/_components/UserList';
-const UserPage = () => {
+import { getDictionary } from '@/app/dictionaries';
+
+const UserPage = async ({ params: { lang } }: { params: { lang: any } }) => {
+  const trans = await getDictionary(lang); // รันบน server เท่านั้น
   return (
     <div>
-      <UserList />
+      <UserList trans={trans} />
     </div>
   );
 };

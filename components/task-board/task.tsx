@@ -54,7 +54,7 @@ const prioritiesColorMap: { [key: string]: any } = {
 };
 
 const tagsColorMap: { [key: string]: any } = {
-  development: "destructive",
+  development: "error",
   planning: "info",
   design: "success",
   "ui/ux": "warning",

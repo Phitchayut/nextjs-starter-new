@@ -26,7 +26,7 @@
     border-color: none !important;
   }
     .has-error .select__control {
-    @apply border-destructive
+    @apply border-error
   }
  .react-select__control .select__input {
     @apply text-default-500;
@@ -41,7 +41,7 @@
     @apply cursor-pointer text-default-600;
   }
     .has-error .react-select__control .select__indicator svg {
-    @apply text-destructive-700;
+    @apply text-error-700;
   }
 
   .select__multi-value__label{

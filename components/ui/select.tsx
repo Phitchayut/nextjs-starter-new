@@ -18,8 +18,8 @@ const selectVariants = cva(
           "border-warning/50 text-warning focus:outline-none focus:border-warning-700 disabled:bg-warning/30 disabled:placeholder:text-info  placeholder:text-warning/70",
         success:
           "border-success/50 text-success focus:outline-none focus:border-success-700 disabled:bg-success/30 disabled:placeholder:text-info  placeholder:text-success/70",
-        destructive:
-          "border-destructive/50 text-destructive focus:outline-none focus:border-destructive-700 disabled:bg-destructive/30 disabled:placeholder:text-destructive  placeholder:text-destructive/70",
+        error:
+          "border-error/50 text-error focus:outline-none focus:border-error-700 disabled:bg-error/30 disabled:placeholder:text-error  placeholder:text-error/70",
       },
       variant: {
         flat: "read-only:bg-default-500/10 ",
@@ -75,8 +75,8 @@ const selectVariants = cva(
       },
       {
         variant: "flat",
-        color: "destructive",
-        className: "read-only:bg-destructive/10",
+        color: "error",
+        className: "read-only:bg-error/10",
       },
       {
         variant: "faded",
@@ -100,8 +100,8 @@ const selectVariants = cva(
       },
       {
         variant: "faded",
-        color: "destructive",
-        className: "read-only:bg-destructive/10 border-destructive/30",
+        color: "error",
+        className: "read-only:bg-error/10 border-error/30",
       },
     ],
     defaultVariants: {
@@ -122,7 +122,7 @@ const SelectValue = SelectPrimitive.Value;
 interface SelectTriggerProps extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>,
   VariantProps<typeof selectVariants> {
   icon?: React.ReactNode
-  color?: 'default' | 'primary' | 'info' | 'warning' | 'success' | 'destructive'
+  color?: 'default' | 'primary' | 'info' | 'warning' | 'success' | 'error'
 }
 
 const SelectTrigger = React.forwardRef<

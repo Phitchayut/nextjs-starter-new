@@ -93,7 +93,7 @@ const SingleFileCard = ({ item }: { item: File }) => {
             size="icon"
             variant="outline"
             className=" h-6 w-6"
-            color="destructive"
+            color="error"
           >
             <Icon icon="heroicons:trash" className=" h-4 w-4  " />
           </Button>

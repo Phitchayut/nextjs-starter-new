@@ -10,7 +10,7 @@ const progressVariants = cva(
       color: {
         primary: "[&>div]:bg-primary",
         dark: "[&>div]:bg-foreground",
-        destructive: "[&>div]:bg-destructive",
+        error: "[&>div]:bg-error",
         warning: "[&>div]:bg-warning",
         info: "[&>div]:bg-info",
         success: "[&>div]:bg-success",
@@ -35,8 +35,8 @@ const circleVariants = cva("[&_[path-color]]:text-default-200 ", {
     color: {
       primary: "[&_[bar-color]]:text-primary [&_[text-color]]:fill-primary",
       dark: "[&_[bar-color]]:text-foreground  [&_[text-color]]:fill-foreground",
-      destructive:
-        "[&_[bar-color]]:text-destructive [&_[text-color]]:fill-destructive",
+      error:
+        "[&_[bar-color]]:text-error [&_[text-color]]:fill-error",
       warning: "[&_[bar-color]]:text-warning [&_[text-color]]:fill-warning",
       info: "[&_[bar-color]]:text-info [&_[text-color]]:fill-info",
       success: "[&_[bar-color]]:text-success [&_[text-color]]:fill-success",
@@ -58,7 +58,7 @@ interface ProgressProps extends React.ComponentPropsWithoutRef<typeof ProgressPr
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl',
   value?: number,
   showValue?: boolean,
-  color?: 'primary' | 'dark' | 'destructive' | 'warning' | 'info' | 'success',
+  color?: 'primary' | 'dark' | 'error' | 'warning' | 'info' | 'success',
   isStripe?: boolean,
   isAnimate?: boolean
 
@@ -120,7 +120,7 @@ interface CircularProgressProps {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl',
   value?: number,
   showValue?: boolean,
-  color?: 'primary' | 'dark' | 'destructive' | 'warning' | 'info' | 'success',
+  color?: 'primary' | 'dark' | 'error' | 'warning' | 'info' | 'success',
   isStripe?: boolean,
   isAnimate?: boolean
   loading?: boolean

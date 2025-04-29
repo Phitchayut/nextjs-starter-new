@@ -159,13 +159,13 @@ const TaskItem = ({ subtask, handlerSubSheet }: {
                     </>
                   )}
                   <DropdownMenuItem
-                    className="gap-2 hover:bg-destructive hover:text-destructive-foreground group"
+                    className="gap-2 hover:bg-error hover:text-error-foreground group"
                     onClick={(e) => {
                       e.stopPropagation();
                       setOpen(true);
                     }}
                   >
-                    <Trash2 className="w-4 h-4 text-default-500 group-hover:text-destructive-foreground" />
+                    <Trash2 className="w-4 h-4 text-default-500 group-hover:text-error-foreground" />
                     Delete
                   </DropdownMenuItem>
                 </DropdownMenuContent>

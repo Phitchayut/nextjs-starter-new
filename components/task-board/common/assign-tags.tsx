@@ -35,11 +35,11 @@ const newtags = [
   },
 ];
 const tagsColorMap: { [key: string]: string } = {
-  development: "destructive",
+  development: "error",
   planning: "info",
   design: "success",
 };
-const themeColors = ["primary", "success", "info", "warning", "destructive"];
+const themeColors = ["primary", "success", "info", "warning", "error"];
 
 const AssignTags = ({ task, taskId }: {
   task: TaskType;
@@ -201,7 +201,7 @@ const AssignTags = ({ task, taskId }: {
                     className={cn(
                       " bg-primary  text-primary-foreground mb-1  aria-selected:text-primary-foreground",
                       {
-                        "bg-destructive aria-selected:bg-destructive":
+                        "bg-error aria-selected:bg-error":
                           newtag.value === "development",
                         "bg-info aria-selected:bg-info":
                           newtag.value === "planning",

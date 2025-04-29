@@ -9,8 +9,8 @@ const badgeVariants = cva(
     variants: {
       color: {
         default: "border-transparent bg-primary text-primary-foreground ",
-        destructive:
-          "bg-destructive border-transparent text-destructive-foreground",
+        error:
+          "bg-error border-transparent text-error-foreground",
         success: "bg-success border-transparent  text-success-foreground ",
         info: "bg-info border-transparent text-info-foreground ",
         warning: "bg-warning  border-transparent text-warning-foreground",
@@ -25,8 +25,8 @@ const badgeVariants = cva(
     compoundVariants: [
       {
         variant: "outline",
-        color: "destructive",
-        className: "text-destructive",
+        color: "error",
+        className: "text-error",
       },
       {
         variant: "outline",
@@ -77,8 +77,8 @@ const badgeVariants = cva(
       },
       {
         variant: "soft",
-        color: "destructive",
-        className: "text-destructive hover:text-destructive",
+        color: "error",
+        className: "text-error hover:text-error",
       },
       {
         variant: "soft",
@@ -106,7 +106,7 @@ export interface BadgeProps
   extends React.HTMLAttributes<HTMLDivElement>,
   VariantProps<typeof badgeVariants> {
   variant?: "outline" | "soft";
-  color?: "default" | "destructive" | "success" | "info" | "warning" | "dark" | "secondary";
+  color?: "default" | "error" | "success" | "info" | "warning" | "dark" | "secondary";
 }
 
 

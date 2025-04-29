@@ -13,8 +13,8 @@ const tooltipVariants = cva(
         warning: "border border-warning bg-warning text-warning-foreground",
         info: "border border-info bg-info text-info-foreground",
         success: "border border-success bg-success text-success-foreground",
-        destructive:
-          "border border-destructive bg-destructive text-destructive-foreground",
+        error:
+          "border border-error bg-error text-error-foreground",
       },
     },
     defaultVariants: {
@@ -24,7 +24,7 @@ const tooltipVariants = cva(
 );
 
 interface TolTipProps extends React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>, VariantProps<typeof tooltipVariants> {
-  color?: 'primary' | 'secondary' | 'warning' | 'info' | 'success' | 'destructive'
+  color?: 'primary' | 'secondary' | 'warning' | 'info' | 'success' | 'error'
 
 }
 

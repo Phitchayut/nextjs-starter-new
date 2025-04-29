@@ -13,7 +13,7 @@ function Add({}: Props) {
         <FormAdd />
       </Card>
       <Link href={`/user`}>
-        <Button className="mt-3"  color="destructive">Back</Button>
+        <Button className="mt-3"  color="error">Back</Button>
       </Link>
     </>
   );

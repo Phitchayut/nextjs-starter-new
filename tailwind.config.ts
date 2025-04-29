@@ -66,10 +66,10 @@ const config  = {
           DEFAULT: "hsl(var(--secondary) / <alpha-value>)",
           foreground: "hsl(var(--secondary-foreground) / <alpha-value>)",
         },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive) / <alpha-value>)",
+        error: {
+          DEFAULT: "hsl(var(--error) / <alpha-value>)",
           700: "#be185d",
-          foreground: "hsl(var(--destructive-foreground) / <alpha-value>)",
+          foreground: "hsl(var(--error-foreground) / <alpha-value>)",
         },
         success: {
           DEFAULT: "hsl(var(--success) / <alpha-value>)",

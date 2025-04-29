@@ -119,13 +119,13 @@ const router = useRouter();
                   <DropdownMenuContent align="end" avoidCollisions>
                     <DropdownMenuItem onClick={() => handleView(item.id ?? 0)}>
                       <Icon
-                        icon="heroicons:pencil"
+                        icon="heroicons:eye"
                         className=" h-4 w-4 mr-2 "
                       />
                       View
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => handleUpdate(item.id ?? 0)}>
-                      <Icon icon="heroicons:eye" className=" h-4 w-4 mr-2 " />
+                      <Icon icon="heroicons:pencil" className=" h-4 w-4 mr-2 " />
                       Update
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => handleDelete(item.id ?? 0)}>

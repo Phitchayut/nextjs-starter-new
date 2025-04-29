@@ -100,7 +100,7 @@ const CreateBoard = ({ open, onClose, board, boardId }: CreateBoardProps) => {
                 {...register("name")}
                 id="boardName"
                 className={cn("", {
-                  "border-destructive focus:border-destructive": errors.name,
+                  "border-error focus:border-error": errors.name,
                 })}
               />
             </div>
@@ -118,7 +118,7 @@ const CreateBoard = ({ open, onClose, board, boardId }: CreateBoardProps) => {
             <div className="flex justify-center gap-4">
               <DialogClose asChild>
                 <Button
-                  color="destructive"
+                  color="error"
                   variant="soft"
                   className="min-w-[136px]"
                 >

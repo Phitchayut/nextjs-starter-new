@@ -10,11 +10,11 @@ export default function Error({ error, reset }: {
 }) {
   return (
     <div className="space-y-4">
-      <Alert color="destructive" variant="soft">
+      <Alert color="error" variant="soft">
         <Info className="h-5 w-5" />
         <AlertDescription>Something went wrong!</AlertDescription>
       </Alert>
-      <Button onClick={() => reset()} color="destructive" size="sm">
+      <Button onClick={() => reset()} color="error" size="sm">
         Try again
       </Button>
     </div>

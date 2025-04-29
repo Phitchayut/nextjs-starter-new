@@ -23,8 +23,7 @@ const ProfileInfo = () => {
   const router = useRouter();
 
   const handleLogout = () => {
-    Cookies.remove('Authentication');
-    router.push('/login');
+    router.push('/logout');
   };
 
   return (

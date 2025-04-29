@@ -19,8 +19,8 @@ const breadcrumbItemsVariants = cva(
         info: "text-info/80 hover:text-info/60 data-[state=active]:text-info aria-[current=page]:text-info",
         warning:
           "text-warning/80  hover:text-warning/60 data-[state=active]:text-warning aria-[current=page]:text-warning",
-        destructive:
-          "text-destructive/80  hover:text-destructive/60 data-[state=active]:text-destructive aria-[current=page]:text-destructive",
+        error:
+          "text-error/80  hover:text-error/60 data-[state=active]:text-error aria-[current=page]:text-error",
       },
 
       underline: {

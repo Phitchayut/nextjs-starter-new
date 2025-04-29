@@ -13,14 +13,17 @@ import { Separator } from '@/components/ui/separator';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { usePathname } from 'next/navigation';
 
-const PopoverSidebar = ({ trans,menus_list }: { trans: string,menus_list: Menu[] }) => {
-
+const PopoverSidebar = ({
+  trans,
+  menus_list,
+}: {
+  trans: string;
+  menus_list: Menu[];
+}) => {
   const { collapsed, sidebarBg } = useSidebar();
   const { layout, isRtl } = useThemeStore();
   const [activeSubmenu, setActiveSubmenu] = useState<number | null>(null);
   const [activeMultiMenu, setMultiMenu] = useState<number | null>(null);
-
-
 
   const toggleSubmenu = (i: number) => {
     if (activeSubmenu === i) {
@@ -72,11 +75,23 @@ const PopoverSidebar = ({ trans,menus_list }: { trans: string,menus_list: Menu[]
   const groupedMenus = menus_list
     .filter((item) => item.canRead !== false)
     .reduce((acc: Record<string, any[]>, item) => {
-      const groupTitle = item.group?.title || 'default';
+      const groupTitle =
+        item.group?.isHeader === false ? 'other' : item.group?.title || 'other';
       if (!acc[groupTitle]) acc[groupTitle] = [];
       acc[groupTitle].push(item);
       return acc;
     }, {});
+
+  // ย้าย other ไปล่างสุดโดยคงลำดับเดิมของ group อื่น
+  const orderedGroupedMenus: Record<string, any[]> = {};
+  for (const key of Object.keys(groupedMenus)) {
+    if (key !== 'other') {
+      orderedGroupedMenus[key] = groupedMenus[key];
+    }
+  }
+  if (groupedMenus.other) {
+    orderedGroupedMenus['other'] = groupedMenus['other'];
+  }
 
   return (
     <div
@@ -106,63 +121,65 @@ const PopoverSidebar = ({ trans,menus_list }: { trans: string,menus_list: Menu[]
             ' space-y-2 text-center': collapsed,
           })}
         >
-          {Object.entries(groupedMenus).map(([groupTitle, items]: [string, any[]], gi) => (
-            <React.Fragment key={`group_${gi}`}>
-              {!collapsed && (
-                <MenuLabel item={{ title: groupTitle }} trans={trans} />
-              )}
-              {items.map((item, i) => (
-                <li key={`menu_key_${gi}_${i}`}>
-                  {/* single menu  */}
-                  {!item.child && !item.isHeader && (
-                    <SingleMenuItem
-                      item={item}
-                      collapsed={collapsed}
-                      trans={trans}
-                    />
-                  )}
+          {Object.entries(orderedGroupedMenus).map(
+            ([groupTitle, items]: [string, any[]], gi) => (
+              <React.Fragment key={`group_${gi}`}>
+                {!collapsed && (
+                  <MenuLabel item={{ title: groupTitle }} trans={trans} />
+                )}
+                {items.map((item, i) => (
+                  <li key={`menu_key_${gi}_${i}`}>
+                    {/* single menu  */}
+                    {!item.child && !item.isHeader && (
+                      <SingleMenuItem
+                        item={item}
+                        collapsed={collapsed}
+                        trans={trans}
+                      />
+                    )}
 
-                  {/* sub menu */}
-                  {item.child &&
-                    item.child.some((child) => child.canRead !== false) && (
-                      <>
-                        <SubMenuHandler
-                          item={item}
-                          toggleSubmenu={toggleSubmenu}
-                          index={i}
-                          activeSubmenu={activeSubmenu}
-                          collapsed={collapsed}
-                          menuTitle={item.title}
-                          trans={trans}
-                        />
-                        {!collapsed && (
-                          <NestedSubMenu
-                            toggleMultiMenu={toggleMultiMenu}
-                            activeMultiMenu={activeMultiMenu}
-                            activeSubmenu={activeSubmenu}
-                            item={{
-                              ...item,
-                              child: item.child
-                                .filter(
-                                  (child: any) => child?.canRead !== false
-                                )
-                                .map((child: any) => ({
-                                  ...child,
-                                  multi_menu: child.multi_menu?.filter(
-                                    (m: any) => m.canRead !== false
-                                  ),
-                                })),
-                            }}
+                    {/* sub menu */}
+                    {item.child &&
+                      item.child.some((child) => child.canRead !== false) && (
+                        <>
+                          <SubMenuHandler
+                            item={item}
+                            toggleSubmenu={toggleSubmenu}
                             index={i}
+                            activeSubmenu={activeSubmenu}
+                            collapsed={collapsed}
+                            menuTitle={item.title}
                             trans={trans}
                           />
-                        )}
-                      </>
-                    )}
-                </li>
-              ))}
-            </React.Fragment>
-          ))}
+                          {!collapsed && (
+                            <NestedSubMenu
+                              toggleMultiMenu={toggleMultiMenu}
+                              activeMultiMenu={activeMultiMenu}
+                              activeSubmenu={activeSubmenu}
+                              item={{
+                                ...item,
+                                child: item.child
+                                  .filter(
+                                    (child: any) => child?.canRead !== false
+                                  )
+                                  .map((child: any) => ({
+                                    ...child,
+                                    multi_menu: child.multi_menu?.filter(
+                                      (m: any) => m.canRead !== false
+                                    ),
+                                  })),
+                              }}
+                              index={i}
+                              trans={trans}
+                            />
+                          )}
+                        </>
+                      )}
+                  </li>
+                ))}
+              </React.Fragment>
+            )
+          )}
         </ul>
       </ScrollArea>
     </div>

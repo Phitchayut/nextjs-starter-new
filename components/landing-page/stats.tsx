@@ -26,7 +26,7 @@ const Stats = () => {
     {
       text: "Usable Components",
       total: "200+",
-      color: "destructive",
+      color: "error",
       icon: Components
     },
     {
@@ -54,7 +54,7 @@ const Stats = () => {
                 "bg-primary/20  dark:bg-primary/70": item.color === "primary",
                 "bg-orange-50 dark:bg-orange-500": item.color === "warning",
                 "bg-green-50 dark:bg-green-500": item.color === "success",
-                "bg-red-50 dark:bg-red-500 ": item.color === "destructive",
+                "bg-red-50 dark:bg-red-500 ": item.color === "error",
                 "bg-cyan-50 dark:bg-cyan-500 ": item.color === "info",
               }
             )}
@@ -66,7 +66,7 @@ const Stats = () => {
                   "bg-primary/50  ring-primary/20 dark:bg-primary dark:ring-primary/40": item.color === "primary",
                   "bg-orange-200 ring-orange-100 dark:bg-orange-300 dark:ring-orange-400": item.color === "warning",
                   "bg-green-200 ring-green-100 dark:bg-green-300 dark:ring-green-400": item.color === "success",
-                  "bg-red-200 ring-red-100 dark:bg-red-300 dark:ring-red-400": item.color === "destructive",
+                  "bg-red-200 ring-red-100 dark:bg-red-300 dark:ring-red-400": item.color === "error",
                   "bg-cyan-200 ring-cyan-100 dark:bg-cyan-300 dark:ring-cyan-400": item.color === "info",
                 }
               )}
@@ -76,7 +76,7 @@ const Stats = () => {
                 "dark:bg-[#EFF3FF]/30": item.color === "primary",
                 "dark:bg-[#FFF7ED]/30": item.color === "warning",
                 "dark:bg-[#ECFDF4]/30": item.color === "success",
-                "dark:bg-[#FEF2F2]/30": item.color === "destructive"
+                "dark:bg-[#FEF2F2]/30": item.color === "error"
               })}>
                 <item.icon className="w-4 h-4 text-primary-foreground" />
               </span>

@@ -61,7 +61,7 @@ const FormUpdate = ({ userId }: Props) => {
           <Label
             htmlFor="name"
             className={cn('', {
-              'text-destructive': errors.name,
+              'text-error': errors.name,
             })}
           >
             Name
@@ -71,13 +71,13 @@ const FormUpdate = ({ userId }: Props) => {
             {...register('name')}
             placeholder="Enter your name"
             className={cn('', {
-              'border-destructive focus:border-destructive': errors.name,
+              'border-error focus:border-error': errors.name,
             })}
           />
           {errors.name && (
             <p
               className={cn('text-xs', {
-                'text-destructive': errors.name,
+                'text-error': errors.name,
               })}
             >
               {errors.name.message}
@@ -88,7 +88,7 @@ const FormUpdate = ({ userId }: Props) => {
           <Label
             htmlFor="email"
             className={cn('', {
-              'text-destructive': errors.email,
+              'text-error': errors.email,
             })}
           >
             Email
@@ -98,13 +98,13 @@ const FormUpdate = ({ userId }: Props) => {
             {...register('email')}
             placeholder="Enter your email"
             className={cn('', {
-              'border-destructive focus:border-destructive': errors.email,
+              'border-error focus:border-error': errors.email,
             })}
           />
           {errors.email && (
             <p
               className={cn('text-xs', {
-                'text-destructive': errors.email,
+                'text-error': errors.email,
               })}
             >
               {errors.email.message}

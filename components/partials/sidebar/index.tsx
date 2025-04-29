@@ -24,14 +24,15 @@ const Sidebar = ({ trans }: { trans: string }) => {
   const isDesktop = useMediaQuery('(min-width: 1280px)');
 
   let selectedSidebar: JSX.Element | null = null;
+  
 
   if (!isDesktop && (sidebarType === 'popover' || sidebarType === 'classic')) {
     selectedSidebar = <MobileSidebar trans={trans}/>;
   } else {
     const sidebarComponents: { [key: string]: JSX.Element } = {
-      module: <ModuleSidebar trans={trans} menus_list={menus_list}/>,
       popover: <PopoverSidebar trans={trans} menus_list={menus_list} />,
       classic: <ClassicSidebar trans={trans} menus_list={menus_list} />,
+      module: <ModuleSidebar trans={trans} menus_list={menus_list}/>,
     };
 
     selectedSidebar = sidebarComponents[sidebarType] || (

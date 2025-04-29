@@ -37,7 +37,7 @@ export async function GET(request: Request) {
       canDelete: true,
       group: {
         isHeader: true,
-        title: 'application',
+        title: 'Menu',
       },
       child: [
         {
@@ -68,7 +68,7 @@ export async function GET(request: Request) {
       canDelete: true,
       group: {
         isHeader: true,
-        title: 'other',
+        title: 'Menu',
       },
       child: [
         {
@@ -100,6 +100,19 @@ export async function GET(request: Request) {
           ],
         },
       ],
+    },
+    {
+      title: 'about',
+      icon: 'ix:about',
+      href: '/about',
+      canRead: true,
+      canCreate: true,
+      canUpdate: true,
+      canDelete: true,
+      group: {
+        isHeader: false,
+        title: 'Menu',
+      }
     },
   ];
   return new Response(JSON.stringify(menus_permission), {

@@ -75,7 +75,7 @@ const PricingPlan = () => {
                   <li className="flex items-center gap-3">
                     <Icon
                       icon="heroicons:x-mark-16-solid"
-                      className="w-4 h-4 text-destructive"
+                      className="w-4 h-4 text-error"
                     />
                     <span className="text-sm xl:text-base text-default-900">
                       Customization guidance and consultancy.
@@ -84,7 +84,7 @@ const PricingPlan = () => {
                   <li className="flex items-center gap-3">
                     <Icon
                       icon="heroicons:x-mark-16-solid"
-                      className="w-4 h-4 text-destructive"
+                      className="w-4 h-4 text-error"
                     />
                     <span className="text-sm xl:text-base  text-default-900">
                       Remote Support, Skype support.
@@ -93,7 +93,7 @@ const PricingPlan = () => {
                   <li className="flex items-center gap-3">
                     <Icon
                       icon="heroicons:x-mark-16-solid"
-                      className="w-4 h-4 text-destructive"
+                      className="w-4 h-4 text-error"
                     />
                     <span className="text-sm xl:text-base  text-default-900">
                       Anydesk/Teamviewer support.
@@ -102,7 +102,7 @@ const PricingPlan = () => {
                   <li className="flex items-center gap-3">
                     <Icon
                       icon="heroicons:x-mark-16-solid"
-                      className="w-4 h-4 text-destructive"
+                      className="w-4 h-4 text-error"
                     />
                     <span className="text-sm xl:text-base  text-default-900">
                       Free installation.
@@ -141,7 +141,7 @@ const PricingPlan = () => {
                 <li className="flex items-center gap-3">
                   <Icon
                     icon="heroicons:x-mark-16-solid"
-                    className="w-4 h-4 text-destructive"
+                    className="w-4 h-4 text-error"
                   />
                   <span className="text-sm xl:text-base text-default-900">
                     Customization guidance and consultancy.
@@ -150,7 +150,7 @@ const PricingPlan = () => {
                 <li className="flex items-center gap-3">
                   <Icon
                     icon="heroicons:x-mark-16-solid"
-                    className="w-4 h-4 text-destructive"
+                    className="w-4 h-4 text-error"
                   />
                   <span className="text-sm xl:text-base  text-default-900">
                     Remote Support, Skype support.
@@ -159,7 +159,7 @@ const PricingPlan = () => {
                 <li className="flex items-center gap-3">
                   <Icon
                     icon="heroicons:x-mark-16-solid"
-                    className="w-4 h-4 text-destructive"
+                    className="w-4 h-4 text-error"
                   />
                   <span className="text-sm xl:text-base  text-default-900">
                     Anydesk/Teamviewer support.
@@ -168,7 +168,7 @@ const PricingPlan = () => {
                 <li className="flex items-center gap-3">
                   <Icon
                     icon="heroicons:x-mark-16-solid"
-                    className="w-4 h-4 text-destructive"
+                    className="w-4 h-4 text-error"
                   />
                   <span className="text-sm xl:text-base  text-default-900">
                     Free installation.
