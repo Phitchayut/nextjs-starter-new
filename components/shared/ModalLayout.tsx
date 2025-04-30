@@ -11,14 +11,13 @@ import {
 import useModalStore from '@/store/modal/modalStore';
 import { Button } from '../ui/button';
 import ConfirmModal from './ConfirmModal';
+import { MODAL_BODY_TYPES } from '@/utils/Constant';
+import AddUserModal from '@/app/[lang]/(backOffice)/user/_components/AddUserModal';
+import UpdateUserModal from '@/app/[lang]/(backOffice)/user/_components/UpdateUserModal';
 
 const ModalLayout: React.FC = () => {
-  const { isOpen, modalData, closeModal, size } = useModalStore();
-
-  // ถ้าไม่มีข้อมูลใน modalData จะตั้งค่าเป็นค่าเริ่มต้น
-  const title = modalData?.title || 'Default Title';
-  const content = modalData?.content || 'Default content';
-
+  const { isOpen, title, extraObject, bodyType, closeModal, size } =
+    useModalStore();
   return (
     <Dialog open={isOpen}>
       <DialogContent
@@ -36,13 +35,26 @@ const ModalLayout: React.FC = () => {
             | 'full'
             | undefined
         }
+        onOpenAutoFocus={(event) => event.preventDefault()}
       >
         <DialogHeader>
           <DialogTitle className="text-base font-medium text-default-700 text-center">
             {title}
           </DialogTitle>
         </DialogHeader>
-        <ConfirmModal closeModal={closeModal} />
+        {
+          {
+            [MODAL_BODY_TYPES.CONFIRMATION]: (
+              <ConfirmModal extraObject={extraObject} closeModal={closeModal} />
+            ),
+            [MODAL_BODY_TYPES.ADD_USER]: (
+              <AddUserModal extraObject={extraObject} closeModal={closeModal} />
+            ),
+            [MODAL_BODY_TYPES.UPDATE_USER]: (
+              <UpdateUserModal extraObject={extraObject} closeModal={closeModal} />
+            ),
+          }[bodyType ?? '']
+        }
       </DialogContent>
     </Dialog>
   );

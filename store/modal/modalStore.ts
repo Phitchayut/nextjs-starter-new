@@ -1,26 +1,38 @@
 // store/modalStore.ts
 import create from 'zustand';
 
-// Type สำหรับข้อมูลที่ส่งไปใน modal
 interface ModalData {
-  title: string;
-  content: string;
+  title?: string;
+  bodyType?: string;
+  size?: string;
+  extraObject?: any;
 }
 
 interface ModalStore {
   isOpen: boolean;
-  size: string;
-  modalData: ModalData | null;
+  title?: string;
+  bodyType?: string;
+  size?: string;
+  extraObject: any;
   openModal: (data: ModalData) => void;
   closeModal: () => void;
 }
 
 const useModalStore = create<ModalStore>((set) => ({
   isOpen: false,
-  modalData: null,
+  extraObject: {},
   size: 'md',
-  openModal: (data) => set({ isOpen: true, modalData: data }),
-  closeModal: () => set({ isOpen: false, modalData: null }),
+  bodyType: '',
+  openModal: (data) =>
+    set({
+      isOpen: true,
+      title: data.title,
+      bodyType: data.bodyType,
+      extraObject: data.extraObject,
+      size: data.size,
+    }),
+  closeModal: () =>
+    set({ isOpen: false, title: '', bodyType: '', extraObject: {} }),
 }));
 
 export default useModalStore;

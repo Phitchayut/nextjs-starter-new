@@ -15,12 +15,12 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Card } from '@/components/ui/card';
 import { useRouter } from 'next/navigation';
+import useModalStore from '@/store/modal/modalStore';
+import { CONFIRMATION_MODAL_CLOSE_TYPES, MODAL_BODY_TYPES } from '@/utils/Constant';
 
 type Props = {
   users: User[];
@@ -28,16 +28,27 @@ type Props = {
 };
 const UserTable = ({ users,deleteUser }: Props) => {
 const router = useRouter();
+const {openModal} = useModalStore();
   const handleView = async (id: number) => {
     router.push(`/user/${id}`);
   };
-  const handleUpdate = async (id: number) => {
-    router.push(`/user/update/${id}`);
+  const handleUpdate = async (item: User) => {
+    openModal({
+      title: 'Update User',
+      bodyType: MODAL_BODY_TYPES.UPDATE_USER,
+      extraObject: item,
+    })
+    // router.push(`/user/update/${id}`);
   };
   const handleDelete = async (id: number) => {
-    if (!confirm('Are you sure you want to delete this user?')) return;
-  
-    await deleteUser(id);
+    openModal({
+      title: 'Delete User',
+      bodyType: MODAL_BODY_TYPES.CONFIRMATION,
+      extraObject: { 
+        id,
+        type: CONFIRMATION_MODAL_CLOSE_TYPES.DELETE_USER
+       },
+    })
   };
 
   const columns: { key: string; label: string }[] = [
@@ -124,7 +135,7 @@ const router = useRouter();
                       />
                       View
                     </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => handleUpdate(item.id ?? 0)}>
+                    <DropdownMenuItem onClick={() => handleUpdate(item)}>
                       <Icon icon="heroicons:pencil" className=" h-4 w-4 mr-2 " />
                       Update
                     </DropdownMenuItem>

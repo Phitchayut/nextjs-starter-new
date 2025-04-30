@@ -8,12 +8,16 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { formUserValidateSchema } from '@/lib/validation/user/userValidation';
 import { useUserStore } from '@/store/user/userStore';
-import { useRouter } from 'next/navigation';
 import { toast as reToast } from 'react-hot-toast';
+import { Loader2 } from 'lucide-react';
 
-const FormAdd = () => {
+type Props = {
+  closeModal: () => void;
+  extraObject: any;
+};
+
+const AddUserModal = ({ extraObject, closeModal }: Props) => {
   const { createUser, loading } = useUserStore();
-  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -26,7 +30,7 @@ const FormAdd = () => {
     try {
       await createUser(data);
       await reToast.success('Successfully added!');
-      await router.push('/user');
+      closeModal();
     } catch (err) {
       reToast.error('Failed to add user');
       console.error(err);
@@ -90,9 +94,13 @@ const FormAdd = () => {
             </p>
           )}
         </div>
-        <div className="mt-2">
+        <div className="mt-2 space-x-2">
           <Button color="success" type="submit" disabled={loading}>
+            {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             Submit
+          </Button>
+          <Button color="error" onClick={closeModal}>
+            Cancel
           </Button>
         </div>
       </form>
@@ -100,4 +108,4 @@ const FormAdd = () => {
   );
 };
 
-export default FormAdd;
+export default AddUserModal;

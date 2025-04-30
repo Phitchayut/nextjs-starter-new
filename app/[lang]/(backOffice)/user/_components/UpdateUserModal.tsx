@@ -13,15 +13,15 @@ import { toast as reToast } from 'react-hot-toast';
 import { useEffect } from 'react';
 
 type Props = {
-  userId: string;
-};
+    closeModal: () => void;
+    extraObject: any;
+  };
 
-const FormUpdate = ({ userId }: Props) => {
+const UpdateUserModal = ({ extraObject, closeModal }: Props) => {
+    
   const router = useRouter();
-  const { user,loading, fetchUser,updateUser } = useUserStore();
-  useEffect(() => {
-    fetchUser(parseInt(userId));
-  }, [userId]);
+  const { loading,updateUser } = useUserStore();
+
 
   const {
     register,
@@ -33,26 +33,24 @@ const FormUpdate = ({ userId }: Props) => {
   });
 
   useEffect(() => {
-    if (user) {
+    if (extraObject) {
       reset({
-        name: user.name,
-        email: user.email,
+        name: extraObject?.name,
+        email: extraObject?.email,
       });
     }
-  }, [user]);
+  }, [extraObject]);
 
   const onSubmit = async (data: z.infer<typeof formUserValidateSchema>) => {
     try {
-      await updateUser({data, id: parseInt(userId)});
+      await updateUser({data, id: parseInt(extraObject?.id)});
       await reToast.success('Successfully updated!');
-      await router.push('/user');
+      await closeModal();
     } catch (err) {
       reToast.error('Failed to updated user');
       console.error(err);
     }
   };
-
-//   if (loading) return <p>Loading user...</p>;
 
   return (
     <>
@@ -111,9 +109,12 @@ const FormUpdate = ({ userId }: Props) => {
             </p>
           )}
         </div>
-        <div className="mt-2">
+        <div className="mt-2 space-x-2">
           <Button color="success" type="submit" disabled={loading}>
             Submit
+          </Button>
+          <Button color="error" onClick={closeModal}>
+            Cancel
           </Button>
         </div>
       </form>
@@ -121,4 +122,4 @@ const FormUpdate = ({ userId }: Props) => {
   );
 };
 
-export default FormUpdate;
+export default UpdateUserModal;

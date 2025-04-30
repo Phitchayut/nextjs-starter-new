@@ -3,7 +3,7 @@ import UserList from '@/app/[lang]/(backOffice)/user/_components/UserList';
 import { getDictionary } from '@/app/dictionaries';
 
 const UserPage = async ({ params: { lang } }: { params: { lang: any } }) => {
-  const trans = await getDictionary(lang); // รันบน server เท่านั้น
+  const trans = await getDictionary(lang);
   return (
     <div>
       <UserList trans={trans} />
