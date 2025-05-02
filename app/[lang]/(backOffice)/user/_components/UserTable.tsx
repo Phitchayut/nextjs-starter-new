@@ -1,3 +1,4 @@
+
 'use client';
 import {
   Table,
@@ -52,24 +53,24 @@ const {openModal} = useModalStore();
 
   const columns: { key: string; label: string }[] = [
     {
-      key: 'avatar',
-      label: 'avatar',
+      key: "avatar",
+      label: "avatar",
     },
     {
-      key: 'name',
-      label: 'name',
+      key: "name",
+      label: "name",
     },
     {
-      key: 'email',
-      label: 'email',
+      key: "email",
+      label: "email",
     },
     {
-      key: 'role',
-      label: 'role',
+      key: "role",
+      label: "role",
     },
     {
-      key: 'action',
-      label: 'action',
+      key: "action",
+      label: "action",
     },
   ];
 
@@ -78,7 +79,7 @@ const {openModal} = useModalStore();
       <Table>
         <TableHeader>
           <TableRow>
-            {columns.map((column) => (
+            {columns.map(column => (
               <TableHead key={column.key}>{column.label}</TableHead>
             ))}
           </TableRow>
@@ -92,38 +93,19 @@ const {openModal} = useModalStore();
                   <AvatarFallback>AB</AvatarFallback>
                 </Avatar>
               </TableCell>
-              <TableCell className="font-medium  text-card-foreground/80">
-                {item.name}
-              </TableCell>
+              <TableCell className="font-medium  text-card-foreground/80">{item.name}</TableCell>
               <TableCell>{item.email}</TableCell>
 
               <TableCell>
-                <Badge
-                  variant="outline"
-                  color={
-                    (item.role === '5' && 'default') ||
-                    (item.role === '7' && 'success') ||
-                    (item.role === '5' && 'info') ||
-                    (item.role === '9' && 'warning') ||
-                    'default'
-                  }
-                  className="capitalize"
-                >
+                <Badge variant="outline" color={(item.role === "5" && "default") || (item.role === "7" && "success") || (item.role === "5" && "info") || (item.role === "9" && "warning") || "default"} className="capitalize">
                   {item.role}
                 </Badge>
               </TableCell>
               <TableCell className="ltr:pr-5 rtl:pl-5">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button
-                      size="icon"
-                      color="secondary"
-                      className=" h-7 rounded-full bg-transparent w-7 data-[state=open]:bg-primary data-[state=open]:text-primary-foreground  "
-                    >
-                      <Icon
-                        icon="heroicons:ellipsis-horizontal"
-                        className=" h-6 w-6 "
-                      />
+                    <Button size="icon" color="secondary" className=" h-7 rounded-full bg-transparent w-7 data-[state=open]:bg-primary data-[state=open]:text-primary-foreground  ">
+                      <Icon icon="heroicons:ellipsis-horizontal" className=" h-6 w-6 " />
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" avoidCollisions>

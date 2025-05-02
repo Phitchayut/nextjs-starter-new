@@ -93,5 +93,4 @@ export { default as FolderTree } from "./home/foldertree.svg";
 
 
 // main-icon
-export { UserIcon } from "./menu/main-icon";
-
+export { UserIcon, SettingsIcon } from "./menu/main-icon";

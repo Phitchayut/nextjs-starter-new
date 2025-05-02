@@ -1,4 +1,4 @@
-import { DashBoard,UserIcon } from '@/components/svg';
+import { DashBoard, UserIcon, SettingsIcon } from '@/components/svg';
 
 export interface MenuItemProps {
   title: string;
@@ -23,6 +23,33 @@ export const menusConfig = {
       icon: UserIcon,
       href: '/user',
     },
+    {
+      title: 'Settings',
+      icon: SettingsIcon,
+      nested: [
+        {
+          title: "Role Settings",
+          child: [
+            {
+              title: "Users",
+              icon: SettingsIcon,
+              href: "/settings/users"
+            },
+            {
+              title: "Members",
+              icon: SettingsIcon,
+              href: "/settings/members"
+            },
+            {
+              title: "Partners",
+              icon: SettingsIcon,
+              href: "/settings/partners"
+            }
+          ]
+        }
+      ]
+    }
+    ,
   ],
   sidebarNav: {
     modern: [
@@ -32,10 +59,21 @@ export const menusConfig = {
         href: '/blank',
       },
       {
-      title: 'CRUD',
-      icon: UserIcon,
-      href: '/user',
-    },
+        title: 'CRUD',
+        icon: UserIcon,
+        href: '/user',
+      },
+      {
+        title: 'Settings',
+        icon: SettingsIcon,
+        child: [
+          {
+            title: "Role Settings",
+            icon: SettingsIcon,
+            href: "/settings"
+          }
+        ]
+      },
     ],
     classic: [
       {
@@ -48,10 +86,21 @@ export const menusConfig = {
         href: '/blank',
       },
       {
-      title: 'CRUD',
-      icon: UserIcon,
-      href: '/user',
-    },
+        title: 'CRUD',
+        icon: UserIcon,
+        href: '/user',
+      },
+      {
+        title: 'Settings',
+        icon: SettingsIcon,
+        child: [
+          {
+            title: "Role Settings",
+            icon: SettingsIcon,
+            href: "/settings"
+          }
+        ]
+      },
     ],
   },
 };
