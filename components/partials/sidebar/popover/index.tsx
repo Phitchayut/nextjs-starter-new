@@ -72,15 +72,19 @@ const PopoverSidebar = ({
     setMultiMenu(multiMenuIndex);
   }, [locationName]);
 
+
+
   const groupedMenus = menus_list
-    .filter((item) => item.canRead !== false)
-    .reduce((acc: Record<string, any[]>, item) => {
-      const groupTitle =
-        item.group?.isHeader === false ? 'other' : item.group?.title || 'other';
-      if (!acc[groupTitle]) acc[groupTitle] = [];
-      acc[groupTitle].push(item);
-      return acc;
-    }, {});
+  .map((item, index) => ({ ...item, __originalIndex: index })) // <== เก็บ index จริง
+  .filter((item) => item.canRead !== false)
+  .reduce((acc: Record<string, any[]>, item) => {
+    const groupTitle =
+      item.group?.isHeader === false ? 'other' : item.group?.title || 'other';
+    if (!acc[groupTitle]) acc[groupTitle] = [];
+    acc[groupTitle].push(item);
+    return acc;
+  }, {});
+
 
   // ย้าย other ไปล่างสุดโดยคงลำดับเดิมของ group อื่น
   const orderedGroupedMenus: Record<string, any[]> = {};
@@ -145,7 +149,7 @@ const PopoverSidebar = ({
                           <SubMenuHandler
                             item={item}
                             toggleSubmenu={toggleSubmenu}
-                            index={i}
+                            index={item.__originalIndex}
                             activeSubmenu={activeSubmenu}
                             collapsed={collapsed}
                             menuTitle={item.title}
@@ -169,7 +173,7 @@ const PopoverSidebar = ({
                                     ),
                                   })),
                               }}
-                              index={i}
+                              index={item.__originalIndex}
                               trans={trans}
                             />
                           )}

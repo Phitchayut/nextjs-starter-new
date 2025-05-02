@@ -121,57 +121,60 @@ const ClassicSidebar = ({
                 {!collapsed && (
                   <MenuLabel item={{ title: groupTitle }} trans={trans} />
                 )}
-                {items.map((item, i) => (
-                  <li key={`menu_key_${gi}_${i}`}>
-                    {/* single menu  */}
-                    {!item.child && !item.isHeader && (
-                      <SingleMenuItem
-                        item={item}
-                        collapsed={collapsed}
-                        hovered={hovered}
-                        trans={trans}
-                      />
-                    )}
+                {items.map((item) => {
+                  const realIndex = menus_list.findIndex((m) => m === item);
+                  return (
+                    <li key={`menu_key_${gi}_${realIndex}`}>
+                      {/* Single menu */}
+                      {!item.child && !item.isHeader && (
+                        <SingleMenuItem
+                          item={item}
+                          collapsed={collapsed}
+                          hovered={hovered}
+                          trans={trans}
+                        />
+                      )}
 
-                    {/* sub menu */}
-                    {item.child &&
-                      item.child.some((child) => child.canRead !== false) && (
-                        <>
-                          <SubMenuHandler
-                           item={item}
-                           toggleSubmenu={toggleSubmenu}
-                           index={i}
-                           activeSubmenu={activeSubmenu}
-                           collapsed={collapsed}
-                           hovered={hovered}
-                           trans={trans}
-                          />
-                          {!collapsed && (
-                            <NestedSubMenu
-                              toggleMultiMenu={toggleMultiMenu}
-                              activeMultiMenu={activeMultiMenu}
+                      {/* Sub menu */}
+                      {item.child &&
+                        item.child.some((child) => child.canRead !== false) && (
+                          <>
+                            <SubMenuHandler
+                              item={item}
+                              toggleSubmenu={toggleSubmenu}
+                              index={realIndex}
                               activeSubmenu={activeSubmenu}
-                              item={{
-                                ...item,
-                                child: item.child
-                                  .filter(
-                                    (child: any) => child?.canRead !== false
-                                  )
-                                  .map((child: any) => ({
-                                    ...child,
-                                    multi_menu: child.multi_menu?.filter(
-                                      (m: any) => m.canRead !== false
-                                    ),
-                                  })),
-                              }}
-                              index={i}
+                              collapsed={collapsed}
+                              hovered={hovered}
                               trans={trans}
                             />
-                          )}
-                        </>
-                      )}
-                  </li>
-                ))}
+                            {!collapsed && (
+                              <NestedSubMenu
+                                toggleMultiMenu={toggleMultiMenu}
+                                activeMultiMenu={activeMultiMenu}
+                                activeSubmenu={activeSubmenu}
+                                item={{
+                                  ...item,
+                                  child: item.child
+                                    .filter(
+                                      (child: any) => child?.canRead !== false
+                                    )
+                                    .map((child: any) => ({
+                                      ...child,
+                                      multi_menu: child.multi_menu?.filter(
+                                        (m: any) => m.canRead !== false
+                                      ),
+                                    })),
+                                }}
+                                index={realIndex}
+                                trans={trans}
+                              />
+                            )}
+                          </>
+                        )}
+                    </li>
+                  );
+                })}
               </React.Fragment>
             )
           )}

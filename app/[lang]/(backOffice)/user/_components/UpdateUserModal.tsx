@@ -18,6 +18,8 @@ type Props = {
   };
 
 const UpdateUserModal = ({ extraObject, closeModal }: Props) => {
+
+  console.log(extraObject);
     
   const router = useRouter();
   const { loading,updateUser } = useUserStore();

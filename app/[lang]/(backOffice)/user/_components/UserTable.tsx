@@ -38,7 +38,6 @@ const {openModal} = useModalStore();
       bodyType: MODAL_BODY_TYPES.UPDATE_USER,
       extraObject: item,
     })
-    // router.push(`/user/update/${id}`);
   };
   const handleDelete = async (id: number) => {
     openModal({

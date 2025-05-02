@@ -24,7 +24,9 @@ const layout = async ({
   // }
 
   return (
-    <DashBoardLayoutProvider trans={trans}>{children}</DashBoardLayoutProvider>
+    <DashBoardLayoutProvider trans={trans}>
+      {children}
+    </DashBoardLayoutProvider>
   );
 };
 

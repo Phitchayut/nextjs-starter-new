@@ -47,6 +47,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".contentlayer/generated"
-  ],
+, "app/[lang]/(backOffice)/(components)/submenu2/page.stx"  ],
   "exclude": ["node_modules"]
 }

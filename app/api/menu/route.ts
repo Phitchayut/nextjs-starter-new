@@ -30,7 +30,7 @@ export async function GET(request: Request) {
     {
       title: 'Menu And Submenu',
       icon: 'ic:twotone-menu-book',
-      href: '/submenu',
+      href: '#',
       canRead: true,
       canCreate: true,
       canUpdate: true,
@@ -82,8 +82,8 @@ export async function GET(request: Request) {
             {
               title: 'Sub Multi Menu 1',
               icon: 'heroicons:information-circle',
-              href: '/accordion',
-              canRead: false,
+              href: '/submultimenu1',
+              canRead: true,
               canCreate: true,
               canUpdate: true,
               canDelete: true,
@@ -91,7 +91,7 @@ export async function GET(request: Request) {
             {
               title: 'Sub Multi Menu 2',
               icon: 'heroicons:information-circle',
-              href: '/alert',
+              href: '/submultimenu2',
               canRead: true,
               canCreate: true,
               canUpdate: true,

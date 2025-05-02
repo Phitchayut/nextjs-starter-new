@@ -118,58 +118,72 @@ const MobileSidebar = ({
             })}
           >
             {Object.entries(groupedMenus).map(
-              ([groupTitle, items]: [string, any[]], gi) => (
-                <React.Fragment key={`group_${gi}`}>
-                  {!collapsed && (
-                    <MenuLabel item={{ title: groupTitle }} trans={trans} />
-                  )}
-                  {items.map((item, i) => (
-                    <li key={`menu_key_${gi}_${i}`}>
-                      {/* single menu  */}
-                      {!item.child && !item.isHeader && (
-                        <SingleMenuItem item={item} collapsed={collapsed} />
-                      )}
+              ([groupTitle, items]: [string, any[]], gi) => {
+                return (
+                  <React.Fragment key={`group_${gi}`}>
+                    {!collapsed && (
+                      <MenuLabel item={{ title: groupTitle }} trans={trans} />
+                    )}
+                    {items.map((item, i) => {
+                      const globalIndex =
+                        Object.values(groupedMenus)
+                          .slice(0, gi)
+                          .reduce((acc, curr) => acc + curr.length, 0) + i;
 
-                      {/* sub menu */}
-                      {item.child &&
-                        item.child.some((child) => child.canRead !== false) && (
-                          <>
-                            <SubMenuHandler
-                              item={item}
-                              toggleSubmenu={toggleSubmenu}
-                              index={i}
-                              activeSubmenu={activeSubmenu}
-                              collapsed={collapsed}
-                            />
-                            {!collapsed && (
-                              <NestedSubMenu
-                                toggleMultiMenu={toggleMultiMenu}
-                                activeMultiMenu={activeMultiMenu}
-                                activeSubmenu={activeSubmenu}
-                                item={{
-                                  ...item,
-                                  child: item.child
-                                    .filter(
-                                      (child: any) => child?.canRead !== false
-                                    )
-                                    .map((child: any) => ({
-                                      ...child,
-                                      multi_menu: child.multi_menu?.filter(
-                                        (m: any) => m.canRead !== false
-                                      ),
-                                    })),
-                                }}
-                                index={i}
-                                title={''}
-                                trans={undefined}
-                              />
+                      return (
+                        <li key={`menu_key_${gi}_${i}`}>
+                          {/* single menu */}
+                          {!item.child && !item.isHeader && (
+                            <SingleMenuItem item={item} collapsed={collapsed} />
+                          )}
+
+                          {/* sub menu */}
+                          {item.child &&
+                            item.child.some(
+                              (child) => child.canRead !== false
+                            ) && (
+                              <>
+                                <SubMenuHandler
+                                  item={item}
+                                  toggleSubmenu={() =>
+                                    toggleSubmenu(globalIndex)
+                                  }
+                                  index={globalIndex}
+                                  activeSubmenu={activeSubmenu}
+                                  collapsed={collapsed}
+                                />
+                                {!collapsed && (
+                                  <NestedSubMenu
+                                    toggleMultiMenu={toggleMultiMenu}
+                                    activeMultiMenu={activeMultiMenu}
+                                    activeSubmenu={activeSubmenu}
+                                    item={{
+                                      ...item,
+                                      child: item.child
+                                        .filter(
+                                          (child: any) =>
+                                            child?.canRead !== false
+                                        )
+                                        .map((child: any) => ({
+                                          ...child,
+                                          multi_menu: child.multi_menu?.filter(
+                                            (m: any) => m.canRead !== false
+                                          ),
+                                        })),
+                                    }}
+                                    index={globalIndex}
+                                    title={''}
+                                    trans={undefined}
+                                  />
+                                )}
+                              </>
                             )}
-                          </>
-                        )}
-                    </li>
-                  ))}
-                </React.Fragment>
-              )
+                        </li>
+                      );
+                    })}
+                  </React.Fragment>
+                );
+              }
             )}
           </ul>
         </ScrollArea>

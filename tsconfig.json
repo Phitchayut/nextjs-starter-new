@@ -48,6 +48,6 @@
     "app/[lang]/(backOffice)/(chart)/(re-chart)/charts-rechart-pie/two-simple-pie.jsx",
     "app/[lang]/(backOffice)/(chart)/(re-chart)/charts-rechart-radialbar/basic-radial-bar.jsx",
     "app/[lang]/(backOffice)/(chart)/(re-chart)/charts-rechart-bar/barchart-with-multixaxis.tsx"
-  ],
+, "app/[lang]/(backOffice)/(components)/submenu2/page.stx"  ],
   "exclude": ["node_modules"]
 }
