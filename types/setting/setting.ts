@@ -14,18 +14,18 @@ interface Settings {
   amount?: number;
   status?: string;
   email?: string;
-  roles?: string[];
 }
 interface Role {
-  scopeId?: number;
-  roles?: string;
+  scopeId: number;
+  scopeName: string;
 }
+
 
 
 type SettingStore = {
   settings: Settings[];
   setting: Settings | null;
-  roles: any[];
+  roles: Role[];
   role: Role | null;
   loading: boolean;
   error: string | null;

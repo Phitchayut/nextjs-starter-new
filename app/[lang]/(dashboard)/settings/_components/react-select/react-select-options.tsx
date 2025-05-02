@@ -12,14 +12,6 @@ interface OptionType {
   icon?: string;
 }
 
-const fruits: OptionType[] = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
-  { value: "orange", label: "Orange" },
-  { value: "apple", label: "Apple" },
-];
-
 const animatedComponents = makeAnimated();
 
 const styles = {
@@ -37,20 +29,19 @@ const styles = {
     fontSize: "14px",
   }),
 };
-const orderOptions = (values: OptionType[]) => {
-  if (values.length > 0) return values.filter(v => v.isFixed).concat(values.filter(v => !v.isFixed));
-};
 
 // start component
 const ReactSelectOption = () => {
-  const [fixedValue, setFixedValue] = useState(orderOptions([fruits[0], fruits[1]]));
-  const { roles, loading, error, deleteUsersSetting, getRolesSetting } = useSettingStore();
-  console.log("roles react: ", roles);
+  const { roles } = useSettingStore();
+  const roleOption: OptionType[] = roles.map((role: any) => ({
+    value: role,
+    label: role,
+  }));
 
   return (
     <div className="grid lg:grid-cols-1 grid-cols-1 gap-5">
       <div>
-        <Select isClearable={false} closeMenuOnSelect={false} components={animatedComponents} defaultValue={[fruits[4], fruits[5]]} isMulti options={fruits} styles={styles} className="react-select" classNamePrefix="select" />
+         <Select isClearable={false} closeMenuOnSelect={false} components={animatedComponents}  isMulti options={roleOption} styles={styles} className="react-select" classNamePrefix="select" /> {/*defaultValue={[roleOption]}*/}
       </div>
     </div>
   );
