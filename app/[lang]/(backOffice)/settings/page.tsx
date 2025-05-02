@@ -1,5 +1,5 @@
 "use client";
-import SettingTabs from '@/app/[lang]/(dashboard)/settings/_components/tabs/SettingTabs';
+import SettingTabs from '@/app/[lang]/(backOffice)/settings/_components/tabs/SettingTabs';
 
 const SettingsPage = () => {
   return (

@@ -9,7 +9,7 @@ import router from "next/router";
 import Select, { GroupBase, OptionProps, components } from "react-select";
 import makeAnimated from "react-select/animated";
 import { Icon } from "@iconify/react";
-import ReactSelectOption from "@/app/[lang]/(dashboard)/settings/_components/react-select/react-select-options"; // adjust import if needed
+import ReactSelectOption from "@/app/[lang]/(backOffice)/settings/_components/react-select/react-select-options"; // adjust import if needed
 
 export default function EditUserModal({
   open,

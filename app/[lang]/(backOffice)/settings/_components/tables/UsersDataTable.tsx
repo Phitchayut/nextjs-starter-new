@@ -58,7 +58,7 @@ const usersColumns: ColumnDef<Settings>[] = [
     accessorKey: "status",
     header: "Status",
     cell: ({ row }) => (
-      <Badge variant="soft" color={(row.getValue("status") === "failed" && "destructive") || (row.getValue("status") === "success" && "success") || (row.getValue("status") === "processing" && "info") || "default"} className=" capitalize">
+      <Badge variant="soft" color={(row.getValue("status") === "failed" && "error") || (row.getValue("status") === "success" && "success") || (row.getValue("status") === "processing" && "info") || "default"} className=" capitalize">
         {row.getValue("status")}
       </Badge>
     ),

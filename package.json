@@ -140,7 +140,7 @@
     "zustand": "^4.4.1"
   },
   "devDependencies": {
-    "@faker-js/faker": "^8.2.0",
+    "@faker-js/faker": "^8.4.1",
     "@svgr/webpack": "^8.1.0",
     "@types/next": "^9.0.0",
     "@types/node": "^20.10.0",
