@@ -1,24 +1,32 @@
 interface Settings {
   id: number;
   user?: {
-     name: string;
-     avatar: string;
-     title?: string;
-     email: string;
+    name: string;
+    avatar: string;
+    title?: string;
+    email: string;
   };
   role?: {
-      id: number;
-      name: string;
-      scope: number;
+    id: number;
+    name: string;
+    scope: number;
   }
   amount?: number;
   status?: string;
   email?: string;
+  roles?: string[];
 }
+interface Role {
+  scopeId?: number;
+  roles?: string;
+}
+
 
 type SettingStore = {
   settings: Settings[];
   setting: Settings | null;
+  roles: any[];
+  role: Role | null;
   loading: boolean;
   error: string | null;
   getUsersSetting: () => Promise<void>;

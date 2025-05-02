@@ -84,7 +84,7 @@ export default function CreateUserModal() {
           <Input name="avatar" value={form.avatar} onChange={handleInputChange} placeholder="Avatar URL" />
           <Input name="title" value={form.title} onChange={handleInputChange} placeholder="Title" />
           <Input name="email" value={form.email} onChange={handleInputChange} placeholder="Email" />
-          <Select value={form.status} onValueChange={(e) => handleInputChange(e)}>
+          <Select value={form.status} onValueChange={e => handleInputChange(e)}>
             <SelectTrigger>
               <SelectValue placeholder="Select status" />
             </SelectTrigger>

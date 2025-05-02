@@ -1,10 +1,11 @@
 import * as setting from "@/services/setting/setting.service";
-import * as roles from "@/services/roles/roles.service";
 import { create } from "zustand";
 
 export const useSettingStore = create<SettingStore>(set => ({
   settings: [],
   setting: null,
+  roles: [],
+  role: null,
   loading: false,
   error: null,
 
@@ -22,12 +23,14 @@ export const useSettingStore = create<SettingStore>(set => ({
       }
     }
   },
-  getRolesSetting: async (id: number) => {
+  getRolesSetting: async (scpoeId: number) => {
     set({ loading: true, error: null });
     try {
-      const roles = await roles.getUsersSetting(id);
-      set({ settings: role, loading: false });
-      console.log(settings);
+      const scopes = await setting.getRolesSetting(scpoeId);
+
+      console.log("sssss: ", scopes);
+      
+      set({ roles: scopes.roles, loading: false });
     } catch (err) {
       if (err instanceof Error) {
         set({ error: err.message, loading: false });

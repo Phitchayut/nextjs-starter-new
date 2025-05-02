@@ -1,7 +1,9 @@
 // services/userService.ts
-import { httpClient } from '@/config/axios.config';
+// import { httpClient } from '@/config/axios.config';
 
-export const getUsersSetting = async (scopeId: number) => {
+export const getRolesByScope = async (scopeId: number) => {
+  let selectedRoles: string[] = [];
+
   const role_1 = [
     "Admin",
     "User",
@@ -12,7 +14,7 @@ export const getUsersSetting = async (scopeId: number) => {
     "Moderator",
     "Contributor",
   ];
-  
+
   const role_2 = [
     "Subscriber",
     "Author",
@@ -33,12 +35,21 @@ export const getUsersSetting = async (scopeId: number) => {
 
   switch (scopeId) {
     case 1:
-      return role_1;
+      selectedRoles = role_1;
+      break;
     case 2:
-      return role_2;
+      selectedRoles = role_2;
+      break;
     case 3:
-      return role_3;
+      selectedRoles = role_3;
+      break;
     default:
       return [];
   }
+
+  return selectedRoles.map((name, index) => ({
+    id: index + 1,
+    name,
+    scope: scopeId
+  }));
 };

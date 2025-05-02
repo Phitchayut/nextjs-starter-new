@@ -1,25 +1,39 @@
-const role_1 = [
-   "Admin", "User", "Guest", "Super Admin",
-   "Editor", "Viewer", "Moderator", "Contributor",
-];
+const roles = {
+   role_1: [
+      "Admin",
+      "User",
+      "Guest",
+      "Super Admin",
+      "Editor",
+      "Viewer",
+      "Moderator"
+   ],
+   role_2: [
+      "DBD",
+   ],
+   role_3: [
+      "Member"
+   ]
+};
 
-const role_2 = [
-   "DBD"
-];
+export const getRolesByScope = async (scopeId: number) => {
+   let selectedRoles: string[] = [];
 
-const role_3 = [
-   "Member"
-];
-
-export const getRolesByScope = (scopeId: number): string[] => {
    switch (scopeId) {
       case 1:
-         return role_1;
+         selectedRoles = roles.role_1;
+         break;
       case 2:
-         return role_2;
+         selectedRoles = roles.role_2;
+         break;
       case 3:
-         return role_3;
+         selectedRoles = roles.role_3;
+         break;
       default:
          return [];
    }
-};
+
+   const selected = [...selectedRoles];
+
+   return selected
+}

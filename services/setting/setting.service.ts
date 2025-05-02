@@ -17,3 +17,11 @@ export const deleteUsersSetting = async (id: number) => {
   const { data: response } = await httpClient.delete(`/users/${id}`);
   return response.data;
 };
+
+// TODO: Check rolesAPI in app/api/roles/[scopeId]/route.ts
+export const getRolesSetting = async (scopeId) => {
+  const response = await httpClient.get(`/roles/${scopeId}`);
+  console.log("getRolesSetting: ", response.data);
+  return await response.data;
+};
+

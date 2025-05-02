@@ -14,6 +14,7 @@ import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
 import { useSettingStore } from "@/store/setting/settingStore";
 import EditUserModal from "../modal/EditUserModal";
+import { log } from "console";
 
 const usersColumns: ColumnDef<Settings>[] = [
   {
@@ -31,7 +32,10 @@ const usersColumns: ColumnDef<Settings>[] = [
       return (
         <div className="font-medium text-card-foreground/80">
           <div className="flex space-x-3 rtl:space-x-reverse items-center">
-            <Avatar className="rounded-full">{user?.avatar ? <AvatarImage src={user.avatar} /> : <AvatarFallback>AB</AvatarFallback>}</Avatar>
+            <Avatar className="w-16 h-16">
+              <AvatarImage src={user?.avatar} alt="User Avatar" />
+              <AvatarFallback>UA</AvatarFallback>
+            </Avatar>
             <span className="text-sm text-card-foreground whitespace-nowrap">{user?.name ?? "Unknown User"}</span>
           </div>
         </div>
@@ -60,18 +64,12 @@ const usersColumns: ColumnDef<Settings>[] = [
     ),
   },
   {
-    accessorKey: "amount",
-    header: () => <div className="text-right">Amount</div>,
+    accessorKey: "role",
+    header: () => <div className="text-right">Role</div>,
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"));
-
-      // Format the amount as a dollar amount
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount);
-
-      return <div className="text-right font-medium">{formatted}</div>;
+      const role = row.original.role?.name || "Unknown Role";
+      // console.log("Role:", role);
+      return <div className="text-right font-medium">{role}</div>;
     },
   },
   {
@@ -81,13 +79,30 @@ const usersColumns: ColumnDef<Settings>[] = [
       const data = row.original;
       const [editModalOpen, setEditModalOpen] = useState(false);
       const [selectedUser, setSelectedUser] = useState(null);
-      const { deleteUsersSetting } = useSettingStore();
+      const { roles, loading, error, deleteUsersSetting, getRolesSetting } = useSettingStore();
 
-      const handleEditUser = (user: any) => {
+      const handleEditUser = async (user: any) => {
         setSelectedUser(user);
         setEditModalOpen(true);
-        console.log("Edit User:", user);
+
+        try {
+          const scopeId = user?.role?.scope;
+          if(scopeId) {
+            console.log("scopeId: ", scopeId);
+            await getRolesSetting(scopeId);
+          }
+
+        } catch (err) {
+          console.error("Error updating user:", err);
+        }
       };
+      // if(roles?.length > 0) {
+      //  console.log("roles: ", roles);
+      // }
+
+
+
+      
       const handleDeleteUser = async (user: any) => {
         const response = await deleteUsersSetting(user.id);
         console.log("Delete User:", user.id);
@@ -107,7 +122,7 @@ const usersColumns: ColumnDef<Settings>[] = [
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               {/* <DropdownMenuItem onClick={() => navigator.clipboard.writeText(data.id)}>Copy payment ID</DropdownMenuItem> */}
               {/* <DropdownMenuSeparator /> */}
-              <DropdownMenuItem onClick={() => handleEditUser(data)}>View</DropdownMenuItem>
+              {/* <DropdownMenuItem onClick={() => handleEditUser(data)}>View</DropdownMenuItem> */}
               <DropdownMenuItem onClick={() => handleEditUser(data)}>Edit</DropdownMenuItem>
               <DropdownMenuItem onClick={() => handleDeleteUser(data)}>Delete</DropdownMenuItem>
             </DropdownMenuContent>
