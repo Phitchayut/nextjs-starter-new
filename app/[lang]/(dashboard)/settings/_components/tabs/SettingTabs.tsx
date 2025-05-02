@@ -7,12 +7,7 @@ import { Input } from "@/components/ui/input";
 import SettingPartnersTable from "./SettingPartnersTable";
 import SettingMembersTable from "./SettingMembersTable";
 import SettingUsersTable from "./SettingUsersTable";
-// import { useSettingStore } from "@/store/setting/settingStore";
-// import { useEffect } from "react";
-// import { Card } from "@/components/ui/card";
-// import SettingTable from "./SettingTable";
-// import { Button } from "@components/ui/button";
-// import { useRouter } from "next/navigation";
+
 
 export default function SettingTabs() {
   return (

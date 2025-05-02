@@ -1,6 +1,5 @@
 "use client";
-import * as React from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
 import { ColumnDef, ColumnFiltersState, SortingState, VisibilityState, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
@@ -14,6 +13,7 @@ import { User } from "./data";
 import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
 import { useSettingStore } from "@/store/setting/settingStore";
+import EditUserModal from "../modal/EditUserModal";
 
 const usersColumns: ColumnDef<Settings>[] = [
   {
@@ -78,10 +78,24 @@ const usersColumns: ColumnDef<Settings>[] = [
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const payment = row.original;
+      const data = row.original;
+      const [editModalOpen, setEditModalOpen] = useState(false);
+      const [selectedUser, setSelectedUser] = useState(null);
+      const { deleteUsersSetting } = useSettingStore();
 
+      const handleEditUser = (user: any) => {
+        setSelectedUser(user);
+        setEditModalOpen(true);
+        console.log("Edit User:", user);
+      };
+      const handleDeleteUser = async (user: any) => {
+        const response = await deleteUsersSetting(user.id);
+        console.log("Delete User:", user.id);
+        console.log("response:", response);
+      };
       return (
         <div className=" text-end">
+          <EditUserModal open={editModalOpen} onOpenChange={setEditModalOpen} user={selectedUser} />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="h-8 w-8 p-0">
@@ -91,10 +105,11 @@ const usersColumns: ColumnDef<Settings>[] = [
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem onClick={() => navigator.clipboard.writeText(payment.id)}>Copy payment ID</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>View customer</DropdownMenuItem>
-              <DropdownMenuItem>View payment details</DropdownMenuItem>
+              {/* <DropdownMenuItem onClick={() => navigator.clipboard.writeText(data.id)}>Copy payment ID</DropdownMenuItem> */}
+              {/* <DropdownMenuSeparator /> */}
+              <DropdownMenuItem onClick={() => handleEditUser(data)}>View</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => handleEditUser(data)}>Edit</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => handleDeleteUser(data)}>Delete</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -114,6 +129,7 @@ export default function UsersDataTable() {
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
+  const [openEditModal, setOpenEditModal] = useState(false);
 
   const table = useReactTable({
     data: settings,
