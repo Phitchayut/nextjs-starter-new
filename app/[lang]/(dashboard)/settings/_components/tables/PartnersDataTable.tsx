@@ -1,5 +1,5 @@
 "use client";
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
 import { ColumnDef, ColumnFiltersState, SortingState, VisibilityState, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
@@ -9,11 +9,12 @@ import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { User, partnersData } from "./data";
+import { useSettingStore } from "@/store/setting/settingStore";
 import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
+import EditPartnerModal from "../modal/EditPartnerModal";
 
-const partnersColumns: ColumnDef<User>[] = [
+const partnersColumns: ColumnDef<Partner>[] = [
   {
     id: "select",
     header: ({ table }) => <Checkbox checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")} onCheckedChange={value => table.toggleAllPageRowsSelected(!!value)} aria-label="Select all" />,
@@ -25,12 +26,12 @@ const partnersColumns: ColumnDef<User>[] = [
     accessorKey: "partner",
     header: "Partner",
     cell: ({ row }) => {
-      const user = row.original.user;
+      const user = row.original;
       return (
         <div className="font-medium text-card-foreground/80">
           <div className="flex space-x-3 rtl:space-x-reverse items-center">
-            <Avatar className="rounded-full">{user?.avatar ? <AvatarImage src={user.avatar} /> : <AvatarFallback>AB</AvatarFallback>}</Avatar>
-            <span className="text-sm text-card-foreground whitespace-nowrap">{user?.name ?? "Unknown User"}</span>
+            {/* <Avatar className="rounded-full">{user?.avatar ? <AvatarImage src={user.avatar} /> : <AvatarFallback>AB</AvatarFallback>}</Avatar> */}
+            <span className="text-sm text-card-foreground whitespace-nowrap">{user?.partner_name ?? "Unknown User"}</span>
           </div>
         </div>
       );
@@ -46,11 +47,11 @@ const partnersColumns: ColumnDef<User>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => <div className="lowercase whitespace-nowrap">{row.getValue("email")}</div>,
+    cell: ({ row }) => <div className="lowercase whitespace-nowrap">{row.getValue("partner_email")}</div>,
   },
   {
     accessorKey: "status",
-    header: "Status",
+    header: () => <div className="text-right">Status</div>,
     cell: ({ row }) => (
       <Badge variant="soft" color={(row.getValue("status") === "failed" && "destructive") || (row.getValue("status") === "success" && "success") || (row.getValue("status") === "processing" && "info") || "default"} className=" capitalize">
         {row.getValue("status")}
@@ -58,28 +59,46 @@ const partnersColumns: ColumnDef<User>[] = [
     ),
   },
   {
-    accessorKey: "amount",
-    header: () => <div className="text-right">Amount</div>,
+    accessorKey: "role",
+    header: () => <div className="text-right">Role</div>,
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"));
-
-      // Format the amount as a dollar amount
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount);
-
-      return <div className="text-right font-medium">{formatted}</div>;
+      const role = row.original.role?.role_name || "Unknown Role";
+      return <div className="text-right font-medium">{role}</div>;
     },
   },
   {
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const payment = row.original;
+      const data = row.original;
+      const [editModalOpen, setEditModalOpen] = useState(false);
+      const [selectedPartner, setSelectedPartner] = useState(null);
+      const { roles, loading, error, deletePartnersSetting, getRolesSetting } = useSettingStore();
+
+      const handleEditPartner = async (partner: any) => {
+        setSelectedPartner(partner);
+        setEditModalOpen(true);
+
+        try {
+          const scopeId = partner?.role?.scope;
+          if (scopeId) {
+            console.log("scopeId: ", scopeId);
+            await getRolesSetting(scopeId);
+          }
+        } catch (err) {
+          console.error("Error updating partner:", err);
+        }
+      };
+
+      const handleDeletePartner = async (partner: any) => {
+        const response = await deletePartnersSetting(partner.id);
+        console.log("Delete User:", partner.id);
+        console.log("response:", response);
+      };
 
       return (
         <div className=" text-end">
+          <EditPartnerModal open={editModalOpen} onOpenChange={setEditModalOpen} partner={selectedPartner} />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="h-8 w-8 p-0">
@@ -89,10 +108,11 @@ const partnersColumns: ColumnDef<User>[] = [
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem onClick={() => navigator.clipboard.writeText(payment.id)}>Copy payment ID</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>View customer</DropdownMenuItem>
-              <DropdownMenuItem>View payment details</DropdownMenuItem>
+              {/* <DropdownMenuItem onClick={() => navigator.clipboard.writeText(data.id)}>Copy payment ID</DropdownMenuItem> */}
+              {/* <DropdownMenuSeparator /> */}
+              {/* <DropdownMenuItem onClick={() => handleEditUser(data)}>View</DropdownMenuItem> */}
+              <DropdownMenuItem onClick={() => handleEditPartner(data)}>Edit</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => handleDeletePartner(data)}>Delete</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -102,13 +122,20 @@ const partnersColumns: ColumnDef<User>[] = [
 ];
 
 export default function PartnersDataTable() {
+  const { partners, loading, error, getPartnersSetting } = useSettingStore();
+
+  useEffect(() => {
+    console.log("partners: ", partners);
+    getPartnersSetting();
+  }, []);  
+
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
 
   const table = useReactTable({
-    data: partnersData,
+    data: partners,
     columns: partnersColumns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,

@@ -1,5 +1,4 @@
 "use client";
-import * as React from "react";
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
 import { ColumnDef, ColumnFiltersState, SortingState, VisibilityState, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
@@ -9,11 +8,13 @@ import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { User, membersData } from "./data";
 import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
+import { useSettingStore } from "@/store/setting/settingStore";
+import { useEffect, useState } from "react";
+import EditMemberModal from "../modal/EditMemberModal";
 
-const membersColumns: ColumnDef<User>[] = [
+const membersColumns: ColumnDef<Settings>[] = [
   {
     id: "select",
     header: ({ table }) => <Checkbox checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")} onCheckedChange={value => table.toggleAllPageRowsSelected(!!value)} aria-label="Select all" />,
@@ -58,30 +59,48 @@ const membersColumns: ColumnDef<User>[] = [
     ),
   },
   {
-    accessorKey: "amount",
-    header: () => <div className="text-right">Amount</div>,
+    accessorKey: "role",
+    header: () => <div className="text-right">role</div>,
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"));
-
-      // Format the amount as a dollar amount
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount);
-
-      return <div className="text-right font-medium">{formatted}</div>;
+      const role = row.original.role?.name || "Unknown Role";
+      return <div className="text-right font-medium">{role}</div>;
     },
   },
   {
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const payment = row.original;
+      const data = row.original;
+      const [editModalOpen, setEditModalOpen] = useState(false);
+      const [selectedMember, setSelectedMember] = useState(null);
+      const { roles, loading, error, deleteMembersSetting, getRolesSetting } = useSettingStore();
+
+      const handleEditMember = async (member: any) => {
+        setSelectedMember(member);
+        setEditModalOpen(true);
+
+        try {
+          const scopeId = member?.role?.scope;
+          if (scopeId) {
+            console.log("scopeId: ", scopeId);
+            await getRolesSetting(scopeId);
+          }
+        } catch (err) {
+          console.error("Error updating member:", err);
+        }
+      };
+
+      const handleDeleteMember = async (member: any) => {
+        const response = await deleteMembersSetting(member.id);
+        console.log("Delete User:", member.id);
+        console.log("response:", response);
+      };
 
       return (
         <div className=" text-end">
+          <EditMemberModal open={editModalOpen} onOpenChange={setEditModalOpen} member={selectedMember} />
           <DropdownMenu>
-            <DropdownMenuTrigger asChild>
+            <DropdownMenuTrigger asChild> 
               <Button variant="ghost" className="h-8 w-8 p-0">
                 <span className="sr-only">Open menu</span>
                 <MoreHorizontal className="h-4 w-4" />
@@ -89,10 +108,11 @@ const membersColumns: ColumnDef<User>[] = [
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem onClick={() => navigator.clipboard.writeText(payment.id)}>Copy payment ID</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>View customer</DropdownMenuItem>
-              <DropdownMenuItem>View payment details</DropdownMenuItem>
+              {/* <DropdownMenuItem onClick={() => navigator.clipboard.writeText(data.id)}>Copy payment ID</DropdownMenuItem> */}
+              {/* <DropdownMenuSeparator /> */}
+              {/* <DropdownMenuItem onClick={() => handleEditUser(data)}>View</DropdownMenuItem> */}
+              <DropdownMenuItem onClick={() => handleEditMember(data)}>Edit</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => handleDeleteMember(data)}>Delete</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -102,13 +122,19 @@ const membersColumns: ColumnDef<User>[] = [
 ];
 
 export default function MembersDataTable() {
-  const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = React.useState({});
+  const { settings, loading, error, getMembersSetting } = useSettingStore();
+
+  useEffect(() => {
+    getMembersSetting();
+  }, []);
+
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+  const [rowSelection, setRowSelection] = useState({});
 
   const table = useReactTable({
-    data: membersData,
+    data: settings,
     columns: membersColumns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,

@@ -9,7 +9,6 @@ import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { User } from "./data";
 import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
 import { useSettingStore } from "@/store/setting/settingStore";
@@ -25,8 +24,8 @@ const usersColumns: ColumnDef<Settings>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "user",
-    header: "User",
+    accessorKey: "partner",
+    header: "Partner",
     cell: ({ row }) => {
       const user = row.original.user;
       return (
@@ -68,7 +67,6 @@ const usersColumns: ColumnDef<Settings>[] = [
     header: () => <div className="text-right">Role</div>,
     cell: ({ row }) => {
       const role = row.original.role?.name || "Unknown Role";
-      // console.log("Role:", role);
       return <div className="text-right font-medium">{role}</div>;
     },
   },
