@@ -95,8 +95,8 @@ export const useSettingStore = create<SettingStore>((set, get) => ({
       const data = await setting.getPartnersSetting({ page, sort });
       set({ partners: data, loading: false });
     } catch (err: any) {
-      console.log(err);
       set({ error: err.message || "Unknown error" });
+      console.log(err);
     } finally {
       set({ loading: false });
     }

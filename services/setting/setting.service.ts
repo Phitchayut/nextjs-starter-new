@@ -20,28 +20,27 @@ export const deleteUsersSetting = async (id: number) => {
 };
 
 // TODO: Partners API
-export async function getPartnersSetting({
-  page = 1,
-  limit = 5,
-  sort = "partner_id:ASC",
-}: {
-  page?: number;
-  limit?: number;
-  sort?: string;
-}): Promise<Partner[]> {
-  const query = `search=&sort=${encodeURIComponent(sort)}&limit=${limit}&page=${page}`;
-  const res = await fetch(`https://auth-dev.tfac.or.th/partners?${query}`);
+// export async function getPartnersSetting({
+//   page = 1,
+//   limit = 5,
+//   sort = "partner_id:ASC",
+// }: {
+//   page?: number;
+//   limit?: number;
+//   sort?: string;
+// }): Promise<Partner[]> {
+//   const query = `search=&sort=${sort}&limit=${limit}&page=${page}`;
+//   const res = await fetch(`https://auth-dev.tfac.or.th/partners?search=&sort=partner_id%3AASC&limit=5&page=1`);
 
-  if (!res.ok) throw new Error("Failed to fetch partners");
+//   if (!res.ok) throw new Error("Failed to fetch partners");
 
-  const json: PartnersResponse = await res.json();
-  console.log(json);
-  return json.data;
-}
-// export const getPartnersSetting = async () => {
-//   const response = await httpClient.get('/partners?search=&sort=partner_id%3AASC&limit=5&page=1');
-//   return response.data;
-// };
+//   const json: PartnersResponse = await res.json();
+//   return json.data;
+// }
+export const getPartnersSetting = async () => {
+  const response = await httpClient.get('/partners?search=&sort=partner_id%3AASC&limit=5&page=1');
+  return response.data;
+};
 export const createPartnersSetting = async (data: Settings) => {
   const response = await httpClient.post('/partners', data);
   return response.data;
