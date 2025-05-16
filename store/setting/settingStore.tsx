@@ -14,14 +14,12 @@ export const useSettingStore = create<SettingStore>((set, get) => ({
   setPage: page => set({ page }),
   setSort: sort => set({ sort }),
 
-  getRolesSetting: async (scpoeId: number) => {
+  getRolesSetting: async (scopeId: number) => {
     set({ loading: true, error: null });
     try {
-      const scopes = await setting.getRolesSetting(scpoeId);
-
-      console.log("sssss: ", scopes);
-
-      set({ roles: scopes.roles, loading: false });
+      const scopes = await setting.getRolesSetting(scopeId);
+      // console.log("getRolesSetting: ", scopes.data.roles);
+      set({ roles: scopes.data.roles, loading: false });
     } catch (err) {
       if (err instanceof Error) {
         set({ error: err.message, loading: false });
@@ -92,8 +90,9 @@ export const useSettingStore = create<SettingStore>((set, get) => ({
     set({ loading: true, error: null });
     try {
       const { page, sort } = get();
-      const data = await setting.getPartnersSetting({ page, sort });
-      set({ partners: data, loading: false });
+      const data = await setting.getPartnersSetting();
+      // const data = await setting.getPartnersSetting({ page, sort });
+      set({ partners: data.data, loading: false });
     } catch (err: any) {
       set({ error: err.message || "Unknown error" });
       console.log(err);
@@ -102,12 +101,12 @@ export const useSettingStore = create<SettingStore>((set, get) => ({
     }
   },
 
-  createPartnersSetting: async (data: Settings) => {
+  createPartnersSetting: async (data: Partner) => {
     set({ loading: true, error: null });
     try {
       await setting.createPartnersSetting(data);
-      // const settings = await setting.getPartnersSetting();
-      // set({ settings, loading: false });
+      const res = await setting.getPartnersSetting();
+      set({ settings: res, loading: false });
     } catch (err) {
       if (err instanceof Error) {
         set({ error: err.message, loading: false });

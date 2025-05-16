@@ -1,35 +1,62 @@
 // app/api/route.ts
 import { NextResponse } from 'next/server';
-import { partners } from './data';
+import { mockPartnerData } from './data';
+import { faker } from "@faker-js/faker";
 
-// Handle GET requests
-export async function GET() {
-   return NextResponse.json(partners);
-}
-
-const getNextId = () => {
-   const ids = partners.map((u) => u.id);
+const getNextId = (): number => {
+   const ids = mockPartnerData.map((partner) => partner.partner_id);
    const maxId = ids.length ? Math.max(...ids) : 0;
    return maxId + 1;
- };
+};
+function generateRandomString(length: number): string {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return result;
+}
+// Handle GET requests
+export async function GET() {
+   return NextResponse.json(mockPartnerData);
+}
+
 export async function POST(req: Request) {
-   const body = await req.json();
-   console.log(body);
+   try {
+      const body = await req.json();
+      console.log("Creating new partner:", body);
 
-   const newUser: Settings = {
-      id: getNextId(),
-      user: {
-         name: body.user.name,
-         avatar: body.user.avatar,
-         title: body.user.title,
-         email: body.user.email,
-      },
-      amount: body.amount,
-      status: body.status,
-      email: body.email,
-   };
+      // Create a new partner with proper structure
+      const newPartner: Partner = {
+         partner_id: getNextId(),
+         partner_name: body.user?.name || body.partner_name || "New Partner",
+         partner_email: body.email || body.partner_email || faker.internet.email(),
+         password_hash: `$2b$10${generateRandomString(22)}`,
+         api_key: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.${generateRandomString(36)}.${generateRandomString(43)}`,
+         status: body.status || "A",
+         create_date: new Date().toISOString(),
+         update_date: new Date().toISOString(),
+         role_id: body.role?.id || 5, // Default to Partner role if not specified
+         role: {
+            role_id: body.role?.id || 5,
+            role_name: body.role?.name || "Partner",
+            role_status: "A",
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+            deleted_at: null
+         }
+      };
 
-   partners.push(newUser); // Add to temporary list (in-memory only)
+      // Add to in-memory list
+      mockPartnerData.push(newPartner);
 
-   return NextResponse.json(newUser, { status: 201 });
+      // Also create a settings entry for UI if the structure matches
+      return NextResponse.json(newPartner, { status: 201 });
+   } catch (error) {
+      console.error("Error creating partner:", error);
+      return NextResponse.json(
+         { error: "Failed to create partner" },
+         { status: 400 }
+      );
+   }
 }

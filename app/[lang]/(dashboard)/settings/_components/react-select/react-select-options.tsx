@@ -1,18 +1,12 @@
 "use client";
 
+import { getRolesSetting } from "@/services/setting/setting.service";
 import { useSettingStore } from "@/store/setting/settingStore";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 
-interface OptionType {
-  value: string;
-  label: string;
-  isFixed?: boolean;
-  icon?: string;
-}
-
-const animatedComponents = makeAnimated();
+// const animatedComponents = makeAnimated();
 
 const styles = {
   multiValue: (base: any, state: any) => {
@@ -31,18 +25,21 @@ const styles = {
 };
 
 // start component
-const ReactSelectOption = () => {
+const ReactSelectOption = (selected: { value: any }) => {
+  // useEffect(() => {
+  //   getRolesSetting(2);
+  // }, []);
   const { roles } = useSettingStore();
+  console.log("roles: ", roles);
   const roleOption: OptionType[] = roles.map((role: any) => ({
-    value: role,
-    label: role,
+    value: role.role_id,
+    label: role.role_name,
   }));
+  const defaultSelected = roleOption.filter(option => selected.value?.role_id === option.value);
 
   return (
-    <div className="grid lg:grid-cols-1 grid-cols-1 gap-5">
-      <div>
-         <Select isClearable={false} closeMenuOnSelect={false} components={animatedComponents}  isMulti options={roleOption} styles={styles} className="react-select" classNamePrefix="select" /> {/*defaultValue={[roleOption]}*/}
-      </div>
+    <div>
+      <Select isClearable={false} defaultValue={defaultSelected} styles={styles} isMulti name="colors" options={roleOption} className="react-select" classNamePrefix="select" />
     </div>
   );
 };

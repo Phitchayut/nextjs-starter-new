@@ -26,12 +26,12 @@ const partnersColumns: ColumnDef<Partner>[] = [
     accessorKey: "partner",
     header: "Partner",
     cell: ({ row }) => {
-      const user = row.original;
+      const partner = row.original;
       return (
         <div className="font-medium text-card-foreground/80">
           <div className="flex space-x-3 rtl:space-x-reverse items-center">
             {/* <Avatar className="rounded-full">{user?.avatar ? <AvatarImage src={user.avatar} /> : <AvatarFallback>AB</AvatarFallback>}</Avatar> */}
-            <span className="text-sm text-card-foreground whitespace-nowrap">{user?.partner_name ?? "Unknown User"}</span>
+            <span className="text-sm text-card-foreground whitespace-nowrap">{partner?.partner_name ?? "Unknown User"}</span>
           </div>
         </div>
       );
@@ -47,7 +47,17 @@ const partnersColumns: ColumnDef<Partner>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => <div className="lowercase whitespace-nowrap">{row.getValue("partner_email")}</div>,
+    cell: ({ row }) => {
+      const partner = row.original;
+      // console.log(partner);
+      return (
+        <div className="font-medium text-card-foreground/80">
+          <div className="flex space-x-3 rtl:space-x-reverse items-center">
+            <span className="text-sm text-card-foreground whitespace-nowrap">{partner?.partner_email ?? "Unknown User"}</span>
+          </div>
+        </div>
+      );
+    },
   },
   {
     accessorKey: "status",
@@ -71,6 +81,7 @@ const partnersColumns: ColumnDef<Partner>[] = [
     enableHiding: false,
     cell: ({ row }) => {
       const data = row.original;
+
       const [editModalOpen, setEditModalOpen] = useState(false);
       const [selectedPartner, setSelectedPartner] = useState(null);
       const { roles, loading, error, deletePartnersSetting, getRolesSetting } = useSettingStore();
@@ -78,16 +89,6 @@ const partnersColumns: ColumnDef<Partner>[] = [
       const handleEditPartner = async (partner: any) => {
         setSelectedPartner(partner);
         setEditModalOpen(true);
-
-        try {
-          const scopeId = partner?.role?.scope;
-          if (scopeId) {
-            console.log("scopeId: ", scopeId);
-            await getRolesSetting(scopeId);
-          }
-        } catch (err) {
-          console.error("Error updating partner:", err);
-        }
       };
 
       const handleDeletePartner = async (partner: any) => {
@@ -125,14 +126,14 @@ export default function PartnersDataTable() {
   const { partners, loading, error, getPartnersSetting } = useSettingStore();
 
   useEffect(() => {
-    console.log("partners: ", partners);
     getPartnersSetting();
-  }, []);  
+  }, []);
 
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
+  // console.log(partners);
 
   const table = useReactTable({
     data: partners,

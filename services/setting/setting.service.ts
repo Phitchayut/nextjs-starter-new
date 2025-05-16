@@ -38,11 +38,13 @@ export const deleteUsersSetting = async (id: number) => {
 //   return json.data;
 // }
 export const getPartnersSetting = async () => {
-  const response = await httpClient.get('/partners?search=&sort=partner_id%3AASC&limit=5&page=1');
+  const response = await httpClient.get('/partners');
+  // const response = await httpClient.get('/partners?search=&sort=partner_id%3AASC&limit=5&page=1');
   return response.data;
 };
-export const createPartnersSetting = async (data: Settings) => {
+export const createPartnersSetting = async (data: Partner) => {
   const response = await httpClient.post('/partners', data);
+  console.log("response api: ", response);
   return response.data;
 };
 export const updatePartnersSetting = async (data: Settings, id: number ) => {
@@ -73,8 +75,8 @@ export const deleteMembersSetting = async (id: number) => {
 
 // TODO: Check rolesAPI in app/api/roles/[scopeId]/route.ts
 export const getRolesSetting = async (scopeId) => {
-  const response = await httpClient.get(`/roles/${scopeId}`);
-  console.log("getRolesSetting: ", response.data);
+  console.log("scopeId: ", scopeId);
+  const response = await httpClient.get(`/scopes/${scopeId}`);
   return await response.data;
 };
 

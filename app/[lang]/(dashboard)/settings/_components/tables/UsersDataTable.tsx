@@ -94,9 +94,7 @@ const usersColumns: ColumnDef<Settings>[] = [
           console.error("Error updating user:", err);
         }
       };
-      // if(roles?.length > 0) {
-      //  console.log("roles: ", roles);
-      // }
+ 
 
 
 
